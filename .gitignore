@@ -1,0 +1,22 @@
+# Ambiente Virtual
+venv/
+env/
+ENV/
+
+# Python / Compilações
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Banco de Dados Local (Django)
+*.sqlite3
+
+# Arquivos de Configuração / Senhas
+.env
+
+# Configurações do VS Code ou IDEs
+.vscode/
+.idea/
+
+# Arquivos estáticos coletados
+/staticfiles/
