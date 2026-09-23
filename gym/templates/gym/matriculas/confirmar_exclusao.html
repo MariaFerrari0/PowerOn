@@ -1,47 +1,132 @@
 {% extends "gym/base.html" %}
 
-{% block title %}Excluir Matrícula - PowerOn{% endblock %}
+{% block title %}
+    Excluir Matrícula - PowerOn
+{% endblock %}
 
 {% block content %}
 
-<h1>EXCLUIR MATRÍCULA</h1>
+<div class="home">
 
-<p>Tem certeza que deseja excluir esta matrícula?</p>
+    <div class="page-header">
 
-<p>
-    <strong>Código:</strong>
-    {{ matricula.codigo_matr }}
-</p>
+        <div>
 
-<p>
-    <strong>Aluno:</strong>
-    {{ matricula.nome_aluno }}
-</p>
+            <h1>EXCLUIR MATRÍCULA</h1>
 
-<p>
-    <strong>Modalidade:</strong>
-    {{ matricula.descricao_modalidade }}
-</p>
+            <p>
+                Confirme a exclusão da matrícula.
+            </p>
 
-<p>
-    <strong>Quantidade de aulas:</strong>
-    {{ matricula.qtde_aulas }}
-</p>
+        </div>
 
-{% if erro %}
-    <p>{{ erro }}</p>
-{% endif %}
+    </div>
 
-<form method="post">
-    {% csrf_token %}
 
-    <button type="submit">
-        Confirmar exclusão
-    </button>
-</form>
+    <div class="detalhes-card">
 
-<a href="{% url 'gym:matriculas_detalhes' matricula.codigo_matr %}">
-    Cancelar
-</a>
+        <div class="mensagem mensagem-aviso">
+
+            <strong>
+                Atenção!
+            </strong>
+
+            <p>
+                Tem certeza que deseja excluir esta matrícula?
+            </p>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Código
+            </strong>
+
+            <span>
+                {{ matricula.codigo_matr }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Aluno
+            </strong>
+
+            <span>
+                {{ matricula.nome_aluno }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Modalidade
+            </strong>
+
+            <span>
+                {{ matricula.descricao_modalidade }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Quantidade de aulas
+            </strong>
+
+            <span>
+                {{ matricula.qtde_aulas }}
+            </span>
+
+        </div>
+
+
+        {% if erro %}
+
+            <div class="mensagem mensagem-erro">
+                {{ erro }}
+            </div>
+
+        {% endif %}
+
+
+        <div class="form-actions">
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="btn btn-perigo"
+                    data-confirmar="Tem certeza que deseja excluir esta matrícula?"
+                >
+                    Confirmar exclusão
+                </button>
+
+            </form>
+
+
+            <a
+                href="{% url 'gym:matriculas_detalhes' matricula.codigo_matr %}"
+                class="btn btn-verde"
+            >
+                Cancelar
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

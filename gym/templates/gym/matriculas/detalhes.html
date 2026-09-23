@@ -6,40 +6,106 @@
 
 {% block content %}
 
-<h1>DETALHES DA MATRÍCULA</h1>
+<div class="home">
 
-<p>
-    <strong>Código:</strong>
-    {{ matricula.codigo_matr }}
-</p>
+    <div class="page-header">
 
-<p>
-    <strong>Aluno:</strong>
-    {{ matricula.nome_aluno }}
-</p>
+        <div>
 
-<p>
-    <strong>Modalidade:</strong>
-    {{ matricula.descricao_modalidade }}
-</p>
+            <h1>DETALHES DA MATRÍCULA</h1>
 
-<p>
-    <strong>Quantidade de aulas:</strong>
-    {{ matricula.qtde_aulas }}
-</p>
+            <p>
+                Informações da matrícula cadastrada.
+            </p>
 
-<hr>
+        </div>
 
-<a href="{% url 'gym:matriculas_editar' matricula.codigo_matr %}">
-    Editar matrícula
-</a>
+    </div>
 
-<a href="{% url 'gym:matriculas_excluir' matricula.codigo_matr %}">
-    Excluir matrícula
-</a>
 
-<a href="{% url 'gym:matriculas_lista' %}">
-    Voltar para matrículas
-</a>
+    <div class="detalhes-card">
+
+        <div class="detalhes-item">
+
+            <strong>
+                Código
+            </strong>
+
+            <span>
+                {{ matricula.codigo_matr }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Aluno
+            </strong>
+
+            <span>
+                {{ matricula.nome_aluno }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Modalidade
+            </strong>
+
+            <span>
+                {{ matricula.descricao_modalidade }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Quantidade de aulas
+            </strong>
+
+            <span>
+                {{ matricula.qtde_aulas }}
+            </span>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <a
+                href="{% url 'gym:matriculas_editar' matricula.codigo_matr %}"
+                class="btn"
+            >
+                Editar matrícula
+            </a>
+
+
+            <a
+                href="{% url 'gym:matriculas_excluir' matricula.codigo_matr %}"
+                class="btn btn-perigo"
+            >
+                Excluir matrícula
+            </a>
+
+
+            <a
+                href="{% url 'gym:matriculas_lista' %}"
+                class="btn btn-verde"
+            >
+                Voltar para matrículas
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

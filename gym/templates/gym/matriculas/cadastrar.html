@@ -6,86 +6,153 @@
 
 {% block content %}
 
-<h1>CADASTRAR MATRÍCULA</h1>
+<div class="home">
 
-{% if erro %}
-    <p>{{ erro }}</p>
-{% endif %}
+    <div class="page-header">
 
-<form method="post">
-    {% csrf_token %}
+        <div>
+            <h1>CADASTRAR MATRÍCULA</h1>
 
-    <label for="codigo_matr">
-        Código:
-    </label>
+            <p>
+                Cadastre um novo aluno em uma modalidade.
+            </p>
+        </div>
 
-    <input
-        type="number"
-        id="codigo_matr"
-        name="codigo_matr"
-        min="1"
-        required
-    >
+    </div>
 
-    <label for="cod_aluno">
-        Aluno:
-    </label>
 
-    <select
-        id="cod_aluno"
-        name="cod_aluno"
-        required
-    >
-        <option value="">
-            Selecione um aluno
-        </option>
+    {% if erro %}
 
-        {% for aluno in alunos %}
-            <option value="{{ aluno.codigo }}">
-                {{ aluno.codigo }} - {{ aluno.nome }}
-            </option>
-        {% endfor %}
-    </select>
+        <div class="mensagem mensagem-erro">
+            {{ erro }}
+        </div>
 
-    <label for="cod_modalidade">
-        Modalidade:
-    </label>
+    {% endif %}
 
-    <select
-        id="cod_modalidade"
-        name="cod_modalidade"
-        required
-    >
-        <option value="">
-            Selecione uma modalidade
-        </option>
 
-        {% for modalidade in modalidades %}
-            <option value="{{ modalidade.codigo_modalidade }}">
-                {{ modalidade.codigo_modalidade }} - {{ modalidade.descricao }}
-            </option>
-        {% endfor %}
-    </select>
+    <div class="card">
 
-    <label for="qtde_aulas">
-        Quantidade de aulas:
-    </label>
+        <form method="post">
 
-    <input
-        type="number"
-        id="qtde_aulas"
-        name="qtde_aulas"
-        min="1"
-        required
-    >
+            {% csrf_token %}
 
-    <button type="submit">
-        Cadastrar
-    </button>
-</form>
 
-<a href="{% url 'gym:matriculas_lista' %}">
-    Voltar para matrículas
-</a>
+            <div class="form-group">
+
+                <label for="codigo_matr">
+                    Código
+                </label>
+
+                <input
+                    type="number"
+                    id="codigo_matr"
+                    name="codigo_matr"
+                    min="1"
+                    required
+                    placeholder="Digite o código da matrícula"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="cod_aluno">
+                    Aluno
+                </label>
+
+                <select
+                    id="cod_aluno"
+                    name="cod_aluno"
+                    required
+                >
+
+                    <option value="">
+                        Selecione um aluno
+                    </option>
+
+                    {% for aluno in alunos %}
+
+                        <option value="{{ aluno.codigo }}">
+                            {{ aluno.codigo }} - {{ aluno.nome }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="cod_modalidade">
+                    Modalidade
+                </label>
+
+                <select
+                    id="cod_modalidade"
+                    name="cod_modalidade"
+                    required
+                >
+
+                    <option value="">
+                        Selecione uma modalidade
+                    </option>
+
+                    {% for modalidade in modalidades %}
+
+                        <option value="{{ modalidade.codigo_modalidade }}">
+                            {{ modalidade.codigo_modalidade }} - {{ modalidade.descricao }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="qtde_aulas">
+                    Quantidade de aulas
+                </label>
+
+                <input
+                    type="number"
+                    id="qtde_aulas"
+                    name="qtde_aulas"
+                    min="1"
+                    required
+                    placeholder="Ex.: 12"
+                >
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Cadastrar matrícula
+                </button>
+
+                <a
+                    href="{% url 'gym:matriculas_lista' %}"
+                    class="btn btn-verde"
+                >
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}

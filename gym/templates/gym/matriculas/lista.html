@@ -6,56 +6,110 @@
 
 {% block content %}
 
-<h1>MATRÍCULAS</h1>
+<div class="home">
 
-<a href="{% url 'gym:home' %}">
-    Voltar para Home
-</a>
+    <div class="page-header">
 
-<a href="{% url 'gym:matriculas_cadastrar' %}">
-    Cadastrar matrícula
-</a>
+        <div>
+            <h1>MATRÍCULAS</h1>
 
-<hr>
+            <p>
+                Gerencie as matrículas da academia.
+            </p>
+        </div>
 
-{% if matriculas %}
+        <a
+            href="{% url 'gym:matriculas_cadastrar' %}"
+            class="btn"
+        >
+            + Nova matrícula
+        </a>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Código</th>
-            <th>Aluno</th>
-            <th>Modalidade</th>
-            <th>Quantidade de aulas</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
+    </div>
 
-    <tbody>
-        {% for matricula in matriculas %}
-        <tr>
-            <td>{{ matricula.codigo_matr }}</td>
 
-            <td>{{ matricula.nome_aluno }}</td>
+    {% if matriculas %}
 
-            <td>{{ matricula.descricao_modalidade }}</td>
+        <div class="table-container">
 
-            <td>{{ matricula.qtde_aulas }}</td>
+            <table>
 
-            <td>
-                <a href="{% url 'gym:matriculas_detalhes' matricula.codigo_matr %}">
-                    Ver detalhes
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                <thead>
 
-{% else %}
+                    <tr>
+                        <th>Código</th>
+                        <th>Aluno</th>
+                        <th>Modalidade</th>
+                        <th>Quantidade de aulas</th>
+                        <th>Ações</th>
+                    </tr>
 
-<p>Nenhuma matrícula cadastrada.</p>
+                </thead>
 
-{% endif %}
+                <tbody>
+
+                    {% for matricula in matriculas %}
+
+                        <tr>
+
+                            <td>
+                                {{ matricula.codigo_matr }}
+                            </td>
+
+                            <td>
+                                {{ matricula.nome_aluno }}
+                            </td>
+
+                            <td>
+                                {{ matricula.descricao_modalidade }}
+                            </td>
+
+                            <td>
+                                {{ matricula.qtde_aulas }}
+                            </td>
+
+                            <td>
+
+                                <a
+                                    href="{% url 'gym:matriculas_detalhes' matricula.codigo_matr %}"
+                                    class="btn btn-verde"
+                                >
+                                    Ver detalhes
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    {% else %}
+
+        <div class="card">
+
+            <h2>Nenhuma matrícula cadastrada</h2>
+
+            <p>
+                Ainda não existem matrículas cadastradas no sistema.
+            </p>
+
+            <a
+                href="{% url 'gym:matriculas_cadastrar' %}"
+                class="btn"
+            >
+                Cadastrar primeira matrícula
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
 
 {% endblock %}

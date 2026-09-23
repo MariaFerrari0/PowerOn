@@ -1,0 +1,346 @@
+/* =========================================================
+   POWERON - PAGES
+   Estilos específicos das páginas
+   ========================================================= */
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+.home {
+    width: 100%;
+    max-width: 1400px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding: 50px 40px;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA HOME
+   ========================================================= */
+
+.home-header {
+    margin-bottom: 45px;
+}
+
+.home-header h1 {
+    margin-bottom: 10px;
+
+    font-size: 3.5rem;
+    font-weight: 800;
+
+    color: var(--cor-texto);
+
+    text-shadow:
+        0 0 10px rgba(157, 0, 255, 0.8),
+        0 0 25px rgba(157, 0, 255, 0.4);
+}
+
+.home-header p {
+    margin: 0;
+
+    font-size: 1.05rem;
+
+    color: var(--cor-texto-secundario);
+}
+
+
+/* =========================================================
+   ESTATÍSTICAS
+   ========================================================= */
+
+.cards-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 24px;
+
+    width: 100%;
+
+    margin-bottom: 50px;
+}
+
+.stat-card {
+    position: relative;
+
+    min-height: 180px;
+
+    padding: 28px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-grande);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(21, 21, 31, 0.98),
+            rgba(12, 12, 19, 0.98)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform var(--transicao),
+        border-color var(--transicao),
+        box-shadow var(--transicao);
+}
+
+
+/* Linha neon no topo */
+
+.stat-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cor-roxo),
+            var(--cor-verde)
+        );
+}
+
+
+/* Brilho */
+
+.stat-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    right: -60px;
+    bottom: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(157, 0, 255, 0.08);
+
+    filter: blur(20px);
+}
+
+
+.stat-card:hover {
+    transform: translateY(-6px);
+
+    border-color: var(--cor-roxo);
+
+    box-shadow:
+        0 10px 35px rgba(157, 0, 255, 0.20),
+        0 0 20px rgba(157, 0, 255, 0.10);
+}
+
+
+.stat-card h3 {
+    margin-bottom: 20px;
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+.stat-card .numero {
+    display: block;
+
+    color: var(--cor-verde);
+
+    font-size: 3rem;
+    font-weight: 800;
+
+    line-height: 1;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 136, 0.35);
+}
+
+
+/* =========================================================
+   RELATÓRIOS
+   ========================================================= */
+
+.relatorios {
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+
+.relatorios h2 {
+    margin-bottom: 20px;
+
+    font-size: 1.8rem;
+
+    color: var(--cor-texto);
+}
+
+
+.relatorio-card {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    width: 100%;
+
+    padding: 25px 30px;
+
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-grande);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(157, 0, 255, 0.07),
+            rgba(0, 255, 136, 0.03)
+        );
+
+    transition:
+        border-color var(--transicao),
+        box-shadow var(--transicao);
+}
+
+
+.relatorio-card:hover {
+    border-color: var(--cor-verde);
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 136, 0.10);
+}
+
+
+.relatorio-card h3 {
+    margin-bottom: 5px;
+
+    color: var(--cor-texto);
+
+    font-size: 1.2rem;
+}
+
+
+.relatorio-card p {
+    margin: 0;
+
+    color: var(--cor-texto-secundario);
+}
+
+
+/* =========================================================
+   PÁGINAS INTERNAS
+   ========================================================= */
+
+.page-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.page-header h1 {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   DETALHES
+   ========================================================= */
+
+.detalhes-card {
+    width: 100%;
+    max-width: 800px;
+
+    padding: 30px;
+
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-grande);
+
+    background: var(--cor-card);
+}
+
+
+.detalhes-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 15px 0;
+
+    border-bottom:
+        1px solid var(--cor-borda);
+}
+
+
+.detalhes-item:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   FATURAMENTO
+   ========================================================= */
+
+.faturamento {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 40px;
+}
+
+
+.faturamento-total {
+    margin-top: 25px;
+
+    padding: 25px;
+
+    border: 1px solid var(--cor-verde);
+
+    border-radius: var(--raio-grande);
+
+    background:
+        rgba(0, 255, 136, 0.05);
+
+    box-shadow:
+        var(--sombra-verde);
+}
+
+
+.faturamento-total strong {
+    color: var(--cor-verde);
+
+    font-size: 1.5rem;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 136, 0.3);
+}

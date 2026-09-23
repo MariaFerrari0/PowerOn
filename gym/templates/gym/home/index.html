@@ -6,24 +6,97 @@
 
 {% block content %}
 
-<h1>PowerOn</h1>
+<div class="home">
 
-<p>Bem-vinda ao sistema PowerOn!</p>
+    <header class="home-header">
+        <h1>PowerOn</h1>
 
-<p>Alunos: {{ total_alunos }}</p>
+        <p>
+            Bem-vinda ao sistema de gestão da academia.
+        </p>
+    </header>
 
-<p>Professores: {{ total_professores }}</p>
 
-<p>Modalidades: {{ total_modalidades }}</p>
+    <!-- ESTATÍSTICAS -->
 
-<p>Matrículas: {{ total_matriculas }}</p>
+    <section class="cards-grid">
 
-<hr>
+        <div class="stat-card">
 
-<h2>Relatórios</h2>
+            <h3>Alunos</h3>
 
-<a href="{% url 'gym:faturamento' %}">
-    Relatório de Faturamento
-</a>
+            <span class="numero">
+                {{ total_alunos }}
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>Professores</h3>
+
+            <span class="numero">
+                {{ total_professores }}
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>Modalidades</h3>
+
+            <span class="numero">
+                {{ total_modalidades }}
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>Matrículas</h3>
+
+            <span class="numero">
+                {{ total_matriculas }}
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- RELATÓRIOS -->
+
+    <section class="relatorios">
+
+        <h2>Relatórios</h2>
+
+        <div class="relatorio-card">
+
+            <div>
+
+                <h3>Faturamento</h3>
+
+                <p>
+                    Consulte o faturamento das modalidades
+                    cadastradas na academia.
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'gym:faturamento' %}"
+                class="btn btn-verde"
+            >
+                Ver relatório
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
 
 {% endblock %}

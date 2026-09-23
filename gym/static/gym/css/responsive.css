@@ -1,0 +1,88 @@
+/* =========================================================
+   POWERON - RESPONSIVE
+   Responsividade para tablet e celular
+   ========================================================= */
+
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .home {
+        padding: 40px 25px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .home {
+        padding: 30px 18px;
+    }
+
+    .home-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .stat-card {
+        min-height: 150px;
+        padding: 22px;
+    }
+
+    .stat-card .numero {
+        font-size: 2.5rem;
+    }
+
+    .relatorio-card {
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 22px;
+    }
+
+    .relatorio-card .btn {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .home {
+        padding: 25px 14px;
+    }
+
+    .home-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .home-header p {
+        font-size: 0.95rem;
+    }
+
+    .stat-card {
+        min-height: 135px;
+    }
+
+}
