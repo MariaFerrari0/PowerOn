@@ -1,32 +1,156 @@
 {% extends "gym/base.html" %}
 
-{% block title %}Cadastrar Aluno{% endblock %}
+{% block title %}
+    Cadastrar Aluno - PowerOn
+{% endblock %}
 
 {% block content %}
-<h1>CADASTRAR ALUNO</h1>
 
-<form method="post">
-    {% csrf_token %}
+<div class="home">
 
-    <label>Código:</label>
-    <input type="number" name="codigo" required>
+    <div class="page-header">
 
-    <label>Nome:</label>
-    <input type="text" name="nome" required>
+        <div>
 
-    <label>Data de nascimento:</label>
-    <input type="date" name="data_nascimento" required>
+            <h1>CADASTRAR ALUNO</h1>
 
-    <label>Peso:</label>
-    <input type="number" name="peso" step="0.01" required>
+            <p>
+                Cadastre um novo aluno na academia.
+            </p>
 
-    <label>Altura:</label>
-    <input type="number" name="altura" step="0.01" required>
+        </div>
 
-    <button type="submit">Cadastrar</button>
-</form>
+    </div>
 
-<a href="{% url 'gym:alunos_lista' %}">
-    Voltar para alunos
-</a>
+
+    {% if erro %}
+
+        <div class="mensagem mensagem-erro">
+            {{ erro }}
+        </div>
+
+    {% endif %}
+
+
+    <div class="card">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="codigo">
+                    Código
+                </label>
+
+                <input
+                    type="number"
+                    id="codigo"
+                    name="codigo"
+                    min="1"
+                    required
+                    placeholder="Digite o código do aluno"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="nome">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    required
+                    placeholder="Digite o nome completo"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="data_nascimento">
+                    Data de nascimento
+                </label>
+
+                <input
+                    type="date"
+                    id="data_nascimento"
+                    name="data_nascimento"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="peso">
+                    Peso (kg)
+                </label>
+
+                <input
+                    type="number"
+                    id="peso"
+                    name="peso"
+                    min="0.1"
+                    step="0.01"
+                    required
+                    placeholder="Ex.: 65.5"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="altura">
+                    Altura (m)
+                </label>
+
+                <input
+                    type="number"
+                    id="altura"
+                    name="altura"
+                    min="0.1"
+                    step="0.01"
+                    required
+                    placeholder="Ex.: 1.65"
+                >
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Cadastrar aluno
+                </button>
+
+
+                <a
+                    href="{% url 'gym:alunos_lista' %}"
+                    class="btn btn-verde"
+                >
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
 {% endblock %}

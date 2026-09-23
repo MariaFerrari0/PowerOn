@@ -6,61 +6,154 @@
 
 {% block content %}
 
-<h1>DETALHES DO ALUNO</h1>
+<div class="home">
 
-<div>
-    <p>
-        <strong>Código:</strong>
-        {{ aluno.codigo }}
-    </p>
+    <div class="page-header">
 
-    <p>
-        <strong>Nome:</strong>
-        {{ aluno.nome }}
-    </p>
+        <div>
 
-    <p>
-        <strong>Data de nascimento:</strong>
-        {{ data_nascimento }}
-    </p>
+            <h1>DETALHES DO ALUNO</h1>
 
-    <p>
-        <strong>Peso:</strong>
-        {{ aluno.peso }} kg
-    </p>
+            <p>
+                Informações cadastrais e avaliação do aluno.
+            </p>
 
-    <p>
-        <strong>Altura:</strong>
-        {{ aluno.altura }} cm
-    </p>
+        </div>
+
+    </div>
+
+
+    <div class="detalhes-card">
+
+        <div class="detalhes-item">
+
+            <strong>
+                Código
+            </strong>
+
+            <span>
+                {{ aluno.codigo }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Nome
+            </strong>
+
+            <span>
+                {{ aluno.nome }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Data de nascimento
+            </strong>
+
+            <span>
+                {{ data_nascimento }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Peso
+            </strong>
+
+            <span>
+                {{ aluno.peso }} kg
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Altura
+            </strong>
+
+            <span>
+                {{ aluno.altura }} m
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="detalhes-card" style="margin-top: 25px;">
+
+        <h2>
+            IMC
+        </h2>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                IMC
+            </strong>
+
+            <span>
+                {{ imc|floatformat:2 }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Diagnóstico
+            </strong>
+
+            <span>
+                {{ diagnostico }}
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+        <a
+            href="{% url 'gym:alunos_editar' aluno.codigo %}"
+            class="btn"
+        >
+            Editar aluno
+        </a>
+
+
+        <a
+            href="{% url 'gym:alunos_excluir' aluno.codigo %}"
+            class="btn btn-perigo"
+        >
+            Excluir aluno
+        </a>
+
+
+        <a
+            href="{% url 'gym:alunos_lista' %}"
+            class="btn btn-verde"
+        >
+            Voltar para alunos
+        </a>
+
+    </div>
+
 </div>
-
-<hr>
-
-<h2>IMC</h2>
-
-<p>
-    <strong>IMC:</strong>
-    {{ imc|floatformat:2 }}
-</p>
-
-<p>
-    <strong>Diagnóstico:</strong>
-    {{ diagnostico }}
-</p>
-
-<hr>
-
-<a href="{% url 'gym:alunos_editar' aluno.codigo %}">
-    Editar aluno
-</a>
-
-<a href="{% url 'gym:alunos_excluir' aluno.codigo %}">
-    Excluir aluno
-</a>
-
-<a href="{% url 'gym:alunos_lista' %}">
-    Voltar para alunos
-</a>
 
 {% endblock %}

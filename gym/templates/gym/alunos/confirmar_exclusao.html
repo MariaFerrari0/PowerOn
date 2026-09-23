@@ -6,32 +6,92 @@
 
 {% block content %}
 
-<h1>EXCLUIR ALUNO</h1>
+<div class="home">
 
-<p>
-    Tem certeza que deseja excluir este aluno?
-</p>
+    <div class="page-header">
 
-<p>
-    <strong>Código:</strong>
-    {{ aluno.codigo }}
-</p>
+        <div>
 
-<p>
-    <strong>Nome:</strong>
-    {{ aluno.nome }}
-</p>
+            <h1>EXCLUIR ALUNO</h1>
 
-<form method="post">
-    {% csrf_token %}
+            <p>
+                Confirme a exclusão do aluno.
+            </p>
 
-    <button type="submit">
-        Confirmar exclusão
-    </button>
-</form>
+        </div>
 
-<a href="{% url 'gym:alunos_detalhes' aluno.codigo %}">
-    Cancelar
-</a>
+    </div>
+
+
+    <div class="detalhes-card">
+
+        <div class="mensagem mensagem-aviso">
+
+            <strong>
+                Atenção!
+            </strong>
+
+            <p>
+                Tem certeza que deseja excluir este aluno?
+            </p>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Código
+            </strong>
+
+            <span>
+                {{ aluno.codigo }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Nome
+            </strong>
+
+            <span>
+                {{ aluno.nome }}
+            </span>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="btn btn-perigo"
+                    data-confirmar="Tem certeza que deseja excluir este aluno?"
+                >
+                    Confirmar exclusão
+                </button>
+
+            </form>
+
+
+            <a
+                href="{% url 'gym:alunos_detalhes' aluno.codigo %}"
+                class="btn btn-verde"
+            >
+                Cancelar
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
