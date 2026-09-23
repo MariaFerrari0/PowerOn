@@ -1,0 +1,32 @@
+{% extends "gym/base.html" %}
+
+{% block title %}Cadastrar Aluno{% endblock %}
+
+{% block content %}
+<h1>CADASTRAR ALUNO</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Código:</label>
+    <input type="number" name="codigo" required>
+
+    <label>Nome:</label>
+    <input type="text" name="nome" required>
+
+    <label>Data de nascimento:</label>
+    <input type="date" name="data_nascimento" required>
+
+    <label>Peso:</label>
+    <input type="number" name="peso" step="0.01" required>
+
+    <label>Altura:</label>
+    <input type="number" name="altura" step="0.01" required>
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+<a href="{% url 'gym:alunos_lista' %}">
+    Voltar para alunos
+</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}PowerOn{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'gym/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'gym/css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'gym/css/pages.css' %}">
+    <link rel="stylesheet" href="{% static 'gym/css/responsive.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    {% block content %}{% endblock %}
+
+    <script src="{% static 'gym/js/main.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+
+</html>

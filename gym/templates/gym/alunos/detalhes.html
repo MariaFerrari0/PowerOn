@@ -1,0 +1,40 @@
+{% extends "gym/base.html" %}
+
+{% block title %}Detalhes do Aluno{% endblock %}
+
+{% block content %}
+<h1>DETALHES DO ALUNO</h1>
+
+<div>
+    <p><strong>Código:</strong> {{ aluno.codigo }}</p>
+
+    <p><strong>Nome:</strong> {{ aluno.nome }}</p>
+
+    <p><strong>Data de nascimento:</strong> {{ data_nascimento }}</p>
+
+    <p><strong>Peso:</strong> {{ aluno.peso }} kg</p>
+
+    <p><strong>Altura:</strong> {{ aluno.altura }} m</p>
+</div>
+
+<hr>
+
+<h2>IMC</h2>
+
+<p>
+    <strong>IMC:</strong>
+    {{ imc|floatformat:2 }}
+</p>
+
+<p>
+    <strong>Diagnóstico:</strong>
+    {{ diagnostico }}
+</p>
+
+<hr>
+
+<a href="{% url 'gym:alunos_lista' %}">
+    Voltar para alunos
+</a>
+
+{% endblock %}
