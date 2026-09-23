@@ -6,75 +6,135 @@
 
 {% block content %}
 
-<h1>RELATÓRIO DE FATURAMENTO</h1>
+<div class="home">
 
-<a href="{% url 'gym:home' %}">
-    Voltar para Home
-</a>
+    <div class="page-header">
 
-<hr>
+        <div>
 
-{% if relatorio %}
+            <h1>RELATÓRIO DE FATURAMENTO</h1>
 
-<table border="1">
+            <p>
+                Consulte o faturamento das modalidades cadastradas.
+            </p>
 
-    <thead>
-        <tr>
-            <th>Código</th>
-            <th>Modalidade</th>
-            <th>Professor</th>
-            <th>Valor da aula</th>
-            <th>Total de aulas</th>
-            <th>Faturamento</th>
-        </tr>
-    </thead>
+        </div>
 
-    <tbody>
+        <a
+            href="{% url 'gym:home' %}"
+            class="btn btn-verde"
+        >
+            ← Voltar para Home
+        </a>
 
-        {% for item in relatorio %}
+    </div>
 
-        <tr>
 
-            <td>
-                {{ item.codigo_modalidade }}
-            </td>
+    {% if relatorio %}
 
-            <td>
-                {{ item.descricao }}
-            </td>
+        <div class="table-container">
 
-            <td>
-                {{ item.nome_professor }}
-            </td>
+            <table>
 
-            <td>
-                R$ {{ item.valor_aula|floatformat:2 }}
-            </td>
+                <thead>
 
-            <td>
-                {{ item.total_aulas }}
-            </td>
+                    <tr>
+                        <th>Código</th>
+                        <th>Modalidade</th>
+                        <th>Professor</th>
+                        <th>Valor da aula</th>
+                        <th>Total de aulas</th>
+                        <th>Faturamento</th>
+                    </tr>
 
-            <td>
-                <strong>
-                    R$ {{ item.faturamento|floatformat:2 }}
-                </strong>
-            </td>
+                </thead>
 
-        </tr>
 
-        {% endfor %}
+                <tbody>
 
-    </tbody>
+                    {% for item in relatorio %}
 
-</table>
+                        <tr>
 
-{% else %}
+                            <td>
+                                {{ item.codigo_modalidade }}
+                            </td>
 
-<p>
-    Nenhuma modalidade cadastrada para gerar o relatório.
-</p>
 
-{% endif %}
+                            <td>
+                                {{ item.descricao }}
+                            </td>
+
+
+                            <td>
+                                {{ item.nome_professor }}
+                            </td>
+
+
+                            <td>
+                                R$ {{ item.valor_aula|floatformat:2 }}
+                            </td>
+
+
+                            <td>
+                                {{ item.total_aulas }}
+                            </td>
+
+
+                            <td>
+
+                                <strong>
+                                    R$ {{ item.faturamento|floatformat:2 }}
+                                </strong>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="faturamento-total">
+
+            <strong>
+                Faturamento por modalidade
+            </strong>
+
+            <p>
+                Os valores apresentados são calculados com base no valor
+                da aula e na quantidade de aulas das matrículas.
+            </p>
+
+        </div>
+
+
+    {% else %}
+
+        <div class="card">
+
+            <h2>Nenhuma modalidade cadastrada</h2>
+
+            <p>
+                Nenhuma modalidade cadastrada para gerar o relatório.
+            </p>
+
+            <a
+                href="{% url 'gym:modalidades_cadastrar' %}"
+                class="btn"
+            >
+                Cadastrar modalidade
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 /* =========================================================
    POWERON - RESPONSIVE
-   Responsividade para tablet e celular
+   Responsividade geral do sistema
    ========================================================= */
 
 
@@ -8,14 +8,347 @@
    TABLETS
    ========================================================= */
 
-@media (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
+
+    /* -----------------------------------------------------
+       SIDEBAR
+       ----------------------------------------------------- */
+
+    .sidebar {
+        width: 230px;
+    }
+
+    .main-content {
+        width: calc(100% - 230px);
+        margin-left: 230px;
+    }
+
+
+    /* -----------------------------------------------------
+       HOME E PÁGINAS
+       ----------------------------------------------------- */
 
     .home {
+        width: 100%;
+        max-width: 100%;
+
         padding: 40px 25px;
     }
 
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    .faturamento {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 40px 25px;
+    }
+
+
+    /* -----------------------------------------------------
+       CARDS DA HOME
+       ----------------------------------------------------- */
+
+    .home .cards-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 20px;
+    }
+
+
+    .home .stat-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    /* -----------------------------------------------------
+       FORMULÁRIOS
+       ----------------------------------------------------- */
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+    .form-group {
+        width: 100%;
+    }
+
+
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       TABELAS
+       ----------------------------------------------------- */
+
+    .table-container {
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: auto;
+    }
+
+
+    table {
+        min-width: 700px;
+    }
+
+
+    /* -----------------------------------------------------
+       CABEÇALHO
+       ----------------------------------------------------- */
+
+    .page-header {
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       DETALHES
+       ----------------------------------------------------- */
+
+    .detalhes-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   TELAS MÉDIAS / TABLETS PEQUENOS
+   ========================================================= */
+
+@media screen and (max-width: 850px) {
+
+    /*
+     * A partir daqui a sidebar deixa de ficar fixa
+     * ocupando espaço permanente.
+     */
+
+    .sidebar {
+        width: 250px;
+
+        transform: translateX(-100%);
+
+        transition:
+            transform 0.3s ease;
+
+        box-shadow:
+            5px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .sidebar.sidebar-aberta {
+        transform: translateX(0);
+    }
+
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+
+    /* -----------------------------------------------------
+       BOTÃO MOBILE
+       ----------------------------------------------------- */
+
+    .menu-mobile {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        position: fixed;
+
+        top: 18px;
+        left: 18px;
+
+        width: 45px;
+        height: 45px;
+
+        border: 1px solid var(--cor-roxo);
+
+        border-radius: var(--raio-medio);
+
+        background:
+            var(--cor-fundo-secundario);
+
+        color: var(--cor-verde);
+
+        font-size: 22px;
+
+        cursor: pointer;
+
+        z-index: 1100;
+
+        box-shadow:
+            0 0 15px rgba(157, 0, 255, 0.25);
+
+        transition:
+            transform var(--transicao),
+            box-shadow var(--transicao);
+    }
+
+
+    .menu-mobile:hover {
+        transform: scale(1.05);
+
+        box-shadow:
+            0 0 20px rgba(157, 0, 255, 0.45);
+    }
+
+
+    /* -----------------------------------------------------
+       OVERLAY
+       ----------------------------------------------------- */
+
+    .sidebar-overlay {
+        display: none;
+
+        position: fixed;
+
+        inset: 0;
+
+        background:
+            rgba(0, 0, 0, 0.55);
+
+        z-index: 900;
+    }
+
+
+    .sidebar-overlay.ativo {
+        display: block;
+    }
+
+
+    /* -----------------------------------------------------
+       CONTEÚDO
+       ----------------------------------------------------- */
+
+    .home {
+        width: 100%;
+        max-width: 100%;
+
+        padding:
+            80px 25px 40px;
+    }
+
+
+    .faturamento {
+        width: 100%;
+        max-width: 100%;
+
+        padding:
+            80px 25px 40px;
+    }
+
+
+    /* -----------------------------------------------------
+       CABEÇALHOS
+       ----------------------------------------------------- */
+
+    .page-header {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+    }
+
+
+    .page-header .btn {
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       FORMULÁRIOS
+       ----------------------------------------------------- */
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 25px;
+    }
+
+
+    .form-group {
+        width: 100%;
+    }
+
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        max-width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    /* -----------------------------------------------------
+       DETALHES
+       ----------------------------------------------------- */
+
+    .detalhes-card {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 25px;
+    }
+
+
+    .detalhes-item {
+        flex-direction: column;
+
+        gap: 6px;
+    }
+
+
+    /* -----------------------------------------------------
+       RELATÓRIO
+       ----------------------------------------------------- */
+
+    .relatorio-card {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 20px;
+    }
+
+
+    .relatorio-card .btn {
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       TABELAS
+       ----------------------------------------------------- */
+
+    .table-container {
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: auto;
+    }
+
+
+    table {
+        min-width: 700px;
     }
 
 }
@@ -25,64 +358,228 @@
    CELULARES
    ========================================================= */
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+
+    /* -----------------------------------------------------
+       CONTEÚDO
+       ----------------------------------------------------- */
 
     .home {
-        padding: 30px 18px;
+        padding:
+            80px 18px 30px;
     }
+
+
+    .faturamento {
+        padding:
+            80px 18px 30px;
+    }
+
+
+    /* -----------------------------------------------------
+       CABEÇALHO HOME
+       ----------------------------------------------------- */
+
+    .home-header {
+        margin-bottom: 30px;
+    }
+
 
     .home-header h1 {
         font-size: 2.5rem;
     }
 
-    .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+
+    .home-header p {
+        font-size: 0.95rem;
+
+        line-height: 1.5;
     }
 
-    .stat-card {
+
+    /* -----------------------------------------------------
+       CARDS
+       ----------------------------------------------------- */
+
+    .home .cards-grid {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        width: 100%;
+    }
+
+
+    .home .stat-card {
+        width: 100%;
+
+        min-width: 0;
+
         min-height: 150px;
+
         padding: 22px;
     }
 
-    .stat-card .numero {
+
+    .home .stat-card h3 {
+        font-size: 1rem;
+
+        margin-bottom: 15px;
+    }
+
+
+    .home .stat-card .numero {
         font-size: 2.5rem;
     }
 
-    .relatorio-card {
+
+    /* -----------------------------------------------------
+       FORMULÁRIOS
+       ----------------------------------------------------- */
+
+    .card {
+        padding: 20px;
+    }
+
+
+    .form-actions {
         flex-direction: column;
-        align-items: flex-start;
+
+        width: 100%;
+    }
+
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       DETALHES
+       ----------------------------------------------------- */
+
+    .detalhes-card {
+        padding: 20px;
+    }
+
+
+    .detalhes-item {
+        padding: 13px 0;
+    }
+
+
+    /* -----------------------------------------------------
+       RELATÓRIOS
+       ----------------------------------------------------- */
+
+    .relatorios {
+        width: 100%;
+
+        margin-top: 35px;
+    }
+
+
+    .relatorios h2 {
+        font-size: 1.6rem;
+    }
+
+
+    .relatorio-card {
+        width: 100%;
 
         padding: 22px;
     }
 
-    .relatorio-card .btn {
+
+    .relatorio-card h3 {
+        font-size: 1.1rem;
+    }
+
+
+    .relatorio-card p {
+        line-height: 1.6;
+    }
+
+
+    /* -----------------------------------------------------
+       TABELAS
+       ----------------------------------------------------- */
+
+    .table-container {
         width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    table {
+        min-width: 700px;
     }
 
 }
 
 
 /* =========================================================
-   CELULARES PEQUENOS
+   CELULARES MUITO PEQUENOS
    ========================================================= */
 
-@media (max-width: 400px) {
+@media screen and (max-width: 400px) {
 
     .home {
-        padding: 25px 14px;
+        padding:
+            75px 14px 25px;
     }
+
+
+    .faturamento {
+        padding:
+            75px 14px 25px;
+    }
+
 
     .home-header h1 {
         font-size: 2.2rem;
     }
 
+
     .home-header p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
-    .stat-card {
+
+    .home .stat-card {
         min-height: 135px;
+
+        padding: 20px;
+    }
+
+
+    .home .stat-card .numero {
+        font-size: 2.3rem;
+    }
+
+
+    .card {
+        padding: 18px;
+    }
+
+
+    .detalhes-card {
+        padding: 18px;
+    }
+
+
+    .relatorio-card {
+        padding: 20px;
     }
 
 }

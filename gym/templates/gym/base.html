@@ -1,6 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
+
 <html lang="pt-br">
 
 <head>
@@ -21,48 +22,95 @@
         {% block title %}PowerOn{% endblock %}
     </title>
 
+
     <!-- CSS GLOBAL -->
+
     <link
         rel="stylesheet"
         href="{% static 'gym/css/global.css' %}"
     >
 
+
     <!-- COMPONENTES -->
+
     <link
         rel="stylesheet"
         href="{% static 'gym/css/components.css' %}"
     >
 
+
     <!-- PÁGINAS -->
+
     <link
         rel="stylesheet"
         href="{% static 'gym/css/pages.css' %}"
     >
 
+
     <!-- RESPONSIVIDADE -->
+
     <link
         rel="stylesheet"
         href="{% static 'gym/css/responsive.css' %}"
     >
 
-    {% block extra_css %}{% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
 
 </head>
 
+
 <body>
 
-    <main>
+
+    <!-- BOTÃO DO MENU MOBILE -->
+
+    <button
+        type="button"
+        class="menu-mobile"
+        id="menu-mobile"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+    >
+        ☰
+    </button>
+
+
+    <!-- FUNDO ESCURO DO MENU MOBILE -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebar-overlay"
+    >
+    </div>
+
+
+    <!-- SIDEBAR -->
+
+    {% include "gym/components/sidebar.html" %}
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="main-content">
+
         {% block content %}
         {% endblock %}
+
     </main>
 
+
     <!-- JAVASCRIPT PRINCIPAL -->
+
     <script
         src="{% static 'gym/js/main.js' %}"
     ></script>
 
+
     {% block extra_js %}
     {% endblock %}
+
 
 </body>
 

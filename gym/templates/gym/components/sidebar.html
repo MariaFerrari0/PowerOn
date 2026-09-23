@@ -1,0 +1,174 @@
+<aside class="sidebar" id="sidebar">
+
+    <!-- CABEÇALHO -->
+
+    <div class="sidebar-header">
+
+        <div class="sidebar-logo">
+
+            <a href="{% url 'gym:home' %}">
+
+                <span class="logo-icon">⚡</span>
+
+                <span class="logo-text">
+                    PowerOn
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- BOTÃO FECHAR NO CELULAR -->
+
+        <button
+            type="button"
+            class="sidebar-close"
+            id="sidebar-close"
+            aria-label="Fechar menu"
+        >
+            ✕
+        </button>
+
+    </div>
+
+
+    <!-- NAVEGAÇÃO -->
+
+    <nav class="sidebar-menu">
+
+
+        <!-- INÍCIO -->
+
+        <a
+            href="{% url 'gym:home' %}"
+            class="menu-item"
+        >
+
+            <span class="menu-icon">⌂</span>
+
+            <span>Início</span>
+
+        </a>
+
+
+        <!-- ALUNOS -->
+
+        <a
+            href="{% url 'gym:alunos_lista' %}"
+            class="menu-item"
+        >
+
+            <span class="menu-icon">👤</span>
+
+            <span>Alunos</span>
+
+        </a>
+
+
+        <a
+            href="{% url 'gym:alunos_cadastrar' %}"
+            class="menu-item menu-subitem"
+        >
+
+            <span class="menu-icon">＋</span>
+
+            <span>Cadastrar aluno</span>
+
+        </a>
+
+
+        <!-- PROFESSORES -->
+
+        <a
+            href="{% url 'gym:professores_lista' %}"
+            class="menu-item"
+        >
+
+            <span class="menu-icon">👨‍🏫</span>
+
+            <span>Professores</span>
+
+        </a>
+
+
+        <a
+            href="{% url 'gym:professores_cadastrar' %}"
+            class="menu-item menu-subitem"
+        >
+
+            <span class="menu-icon">＋</span>
+
+            <span>Cadastrar professor</span>
+
+        </a>
+
+
+        <!-- MODALIDADES -->
+
+        <a
+            href="{% url 'gym:modalidades_lista' %}"
+            class="menu-item"
+        >
+
+            <span class="menu-icon">🏋️</span>
+
+            <span>Modalidades</span>
+
+        </a>
+
+
+        <a
+            href="{% url 'gym:modalidades_cadastrar' %}"
+            class="menu-item menu-subitem"
+        >
+
+            <span class="menu-icon">＋</span>
+
+            <span>Cadastrar modalidade</span>
+
+        </a>
+
+
+        <!-- MATRÍCULAS -->
+
+        <a
+            href="{% url 'gym:matriculas_lista' %}"
+            class="menu-item"
+        >
+
+            <span class="menu-icon">📋</span>
+
+            <span>Matrículas</span>
+
+        </a>
+
+
+        <a
+            href="{% url 'gym:matriculas_cadastrar' %}"
+            class="menu-item menu-subitem"
+        >
+
+            <span class="menu-icon">＋</span>
+
+            <span>Nova matrícula</span>
+
+        </a>
+
+
+        <!-- FATURAMENTO -->
+
+        <a
+            href="{% url 'gym:faturamento' %}"
+            class="menu-item"
+        >
+
+            <span class="menu-icon">📊</span>
+
+            <span>Faturamento</span>
+
+        </a>
+
+    </nav>
+
+</aside>

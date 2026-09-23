@@ -11,7 +11,6 @@
 .home {
     width: 100%;
     max-width: 1400px;
-
     min-height: 100vh;
 
     margin: 0 auto;
@@ -67,6 +66,7 @@
     margin-bottom: 50px;
 }
 
+
 .stat-card {
     position: relative;
 
@@ -77,6 +77,7 @@
     overflow: hidden;
 
     border: 1px solid var(--cor-borda);
+
     border-radius: var(--raio-grande);
 
     background:
@@ -139,6 +140,8 @@
     filter: blur(20px);
 }
 
+
+/* Hover */
 
 .stat-card:hover {
     transform: translateY(-6px);
@@ -209,6 +212,7 @@
     padding: 25px 30px;
 
     border: 1px solid var(--cor-borda);
+
     border-radius: var(--raio-grande);
 
     background:
@@ -280,6 +284,7 @@
     padding: 30px;
 
     border: 1px solid var(--cor-borda);
+
     border-radius: var(--raio-grande);
 
     background: var(--cor-card);
@@ -343,4 +348,13 @@
 
     text-shadow:
         0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+
+/* =========================================================
+   CONTEÚDO DAS PÁGINAS INTERNAS
+   ========================================================= */
+
+.main-content > .home {
+    width: 100%;
 }
