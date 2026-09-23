@@ -6,69 +6,144 @@
 
 {% block content %}
 
-<h1>EDITAR PROFESSOR</h1>
+<div class="home">
 
-{% if erro %}
-    <p>{{ erro }}</p>
-{% endif %}
+    <div class="page-header">
 
-<form method="post">
-    {% csrf_token %}
+        <div>
 
-    <label for="codigo_prof">
-        Código:
-    </label>
+            <h1>EDITAR PROFESSOR</h1>
 
-    <input
-        type="number"
-        id="codigo_prof"
-        value="{{ professor.codigo_prof }}"
-        disabled
-    >
+            <p>
+                Atualize os dados cadastrais do professor.
+            </p>
 
-    <label for="nome">
-        Nome:
-    </label>
+        </div>
 
-    <input
-        type="text"
-        id="nome"
-        name="nome"
-        value="{{ professor.nome }}"
-        required
-    >
+    </div>
 
-    <label for="endereco">
-        Endereço:
-    </label>
 
-    <input
-        type="text"
-        id="endereco"
-        name="endereco"
-        value="{{ professor.endereco }}"
-        required
-    >
+    {% if erro %}
 
-    <label for="telefone">
-        Telefone:
-    </label>
+        <div class="mensagem mensagem-erro">
+            {{ erro }}
+        </div>
 
-    <input
-        type="text"
-        id="telefone"
-        name="telefone"
-        value="{{ professor.telefone }}"
-        required
-    >
+    {% endif %}
 
-    <button type="submit">
-        Salvar alterações
-    </button>
-</form>
 
-<a href="{% url 'gym:professores_detalhes' professor.codigo_prof %}">
-    Cancelar
-</a>
+    <div class="card">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="codigo_prof">
+                    Código
+                </label>
+
+                <input
+                    type="number"
+                    id="codigo_prof"
+                    value="{{ professor.codigo_prof }}"
+                    disabled
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="nome">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    value="{{ professor.nome }}"
+                    required
+                    placeholder="Digite o nome completo"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="endereco">
+                    Endereço
+                </label>
+
+                <input
+                    type="text"
+                    id="endereco"
+                    name="endereco"
+                    value="{{ professor.endereco }}"
+                    required
+                    placeholder="Digite o endereço"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="telefone">
+                    Telefone
+                </label>
+
+                <input
+                    type="text"
+                    id="telefone"
+                    name="telefone"
+                    value="{{ professor.telefone }}"
+                    required
+                    placeholder="Digite o telefone"
+                >
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Salvar alterações
+                </button>
+
+
+                <a
+                    href="{% url 'gym:professores_detalhes' professor.codigo_prof %}"
+                    class="btn btn-verde"
+                >
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <div class="form-actions">
+
+        <a
+            href="{% url 'gym:professores_lista' %}"
+            class="btn btn-verde"
+        >
+            ← Voltar para professores
+        </a>
+
+    </div>
+
+</div>
 
 {% endblock %}

@@ -6,67 +6,131 @@
 
 {% block content %}
 
-<h1>CADASTRAR PROFESSOR</h1>
+<div class="home">
 
-{% if erro %}
-    <p>{{ erro }}</p>
-{% endif %}
+    <div class="page-header">
 
-<form method="post">
-    {% csrf_token %}
+        <div>
 
-    <label for="codigo_prof">
-        Código:
-    </label>
+            <h1>CADASTRAR PROFESSOR</h1>
 
-    <input
-        type="number"
-        id="codigo_prof"
-        name="codigo_prof"
-        min="1"
-        required
-    >
+            <p>
+                Cadastre um novo professor na academia.
+            </p>
 
-    <label for="nome">
-        Nome:
-    </label>
+        </div>
 
-    <input
-        type="text"
-        id="nome"
-        name="nome"
-        required
-    >
+    </div>
 
-    <label for="endereco">
-        Endereço:
-    </label>
 
-    <input
-        type="text"
-        id="endereco"
-        name="endereco"
-        required
-    >
+    {% if erro %}
 
-    <label for="telefone">
-        Telefone:
-    </label>
+        <div class="mensagem mensagem-erro">
+            {{ erro }}
+        </div>
 
-    <input
-        type="text"
-        id="telefone"
-        name="telefone"
-        required
-    >
+    {% endif %}
 
-    <button type="submit">
-        Cadastrar
-    </button>
-</form>
 
-<a href="{% url 'gym:professores_lista' %}">
-    Voltar para professores
-</a>
+    <div class="card">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="codigo_prof">
+                    Código
+                </label>
+
+                <input
+                    type="number"
+                    id="codigo_prof"
+                    name="codigo_prof"
+                    min="1"
+                    required
+                    placeholder="Digite o código do professor"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="nome">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    required
+                    placeholder="Digite o nome completo"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="endereco">
+                    Endereço
+                </label>
+
+                <input
+                    type="text"
+                    id="endereco"
+                    name="endereco"
+                    required
+                    placeholder="Digite o endereço"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="telefone">
+                    Telefone
+                </label>
+
+                <input
+                    type="text"
+                    id="telefone"
+                    name="telefone"
+                    required
+                    placeholder="Digite o telefone"
+                >
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Cadastrar professor
+                </button>
+
+
+                <a
+                    href="{% url 'gym:professores_lista' %}"
+                    class="btn btn-verde"
+                >
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}

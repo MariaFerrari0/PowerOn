@@ -6,40 +6,106 @@
 
 {% block content %}
 
-<h1>DETALHES DO PROFESSOR</h1>
+<div class="home">
 
-<p>
-    <strong>Código:</strong>
-    {{ professor.codigo_prof }}
-</p>
+    <div class="page-header">
 
-<p>
-    <strong>Nome:</strong>
-    {{ professor.nome }}
-</p>
+        <div>
 
-<p>
-    <strong>Endereço:</strong>
-    {{ professor.endereco }}
-</p>
+            <h1>DETALHES DO PROFESSOR</h1>
 
-<p>
-    <strong>Telefone:</strong>
-    {{ professor.telefone }}
-</p>
+            <p>
+                Informações cadastrais do professor.
+            </p>
 
-<hr>
+        </div>
 
-<a href="{% url 'gym:professores_editar' professor.codigo_prof %}">
-    Editar professor
-</a>
+    </div>
 
-<a href="{% url 'gym:professores_excluir' professor.codigo_prof %}">
-    Excluir professor
-</a>
 
-<a href="{% url 'gym:professores_lista' %}">
-    Voltar para professores
-</a>
+    <div class="detalhes-card">
+
+        <div class="detalhes-item">
+
+            <strong>
+                Código
+            </strong>
+
+            <span>
+                {{ professor.codigo_prof }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Nome
+            </strong>
+
+            <span>
+                {{ professor.nome }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Endereço
+            </strong>
+
+            <span>
+                {{ professor.endereco }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Telefone
+            </strong>
+
+            <span>
+                {{ professor.telefone }}
+            </span>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <a
+                href="{% url 'gym:professores_editar' professor.codigo_prof %}"
+                class="btn"
+            >
+                Editar professor
+            </a>
+
+
+            <a
+                href="{% url 'gym:professores_excluir' professor.codigo_prof %}"
+                class="btn btn-perigo"
+            >
+                Excluir professor
+            </a>
+
+
+            <a
+                href="{% url 'gym:professores_lista' %}"
+                class="btn btn-verde"
+            >
+                Voltar para professores
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
