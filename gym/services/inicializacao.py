@@ -46,7 +46,9 @@ aluno_service = AlunoService(
 
 professor_service = ProfessorService(
     arquivo_professores,
-    indice_professores
+    indice_professores,
+    arquivo_modalidades,
+    indice_modalidades
 )
 
 modalidade_service = ModalidadeService(

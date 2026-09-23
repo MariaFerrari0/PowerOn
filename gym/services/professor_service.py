@@ -1,8 +1,16 @@
 class ProfessorService:
 
-    def __init__(self, arquivo_professores, indice_professores):
+    def __init__(
+        self,
+        arquivo_professores,
+        indice_professores,
+        arquivo_modalidades,
+        indice_modalidades
+    ):
         self.arquivo_professores = arquivo_professores
         self.indice_professores = indice_professores
+        self.arquivo_modalidades = arquivo_modalidades
+        self.indice_modalidades = indice_modalidades
 
     def cadastrar(self, professor):
         if self.indice_professores.buscar(
@@ -41,7 +49,6 @@ class ProfessorService:
         professores = []
 
         for codigo, posicao in self.indice_professores.listar():
-
             professor = self.arquivo_professores.buscar(
                 posicao
             )
@@ -72,6 +79,20 @@ class ProfessorService:
 
         if no is None:
             return False
+
+        # Verifica se o professor está vinculado
+        # a alguma modalidade.
+        for codigo, posicao in self.indice_modalidades.listar():
+            modalidade = self.arquivo_modalidades.buscar(posicao)
+
+            if modalidade is None:
+                continue
+
+            if modalidade.cod_prof == codigo_prof:
+                raise ValueError(
+                    "Não é possível excluir o professor "
+                    "porque ele está vinculado a uma modalidade."
+                )
 
         posicao = no.posicao
 
