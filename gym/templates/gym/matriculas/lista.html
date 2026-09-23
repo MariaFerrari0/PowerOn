@@ -1,0 +1,61 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Matrículas - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>MATRÍCULAS</h1>
+
+<a href="{% url 'gym:home' %}">
+    Voltar para Home
+</a>
+
+<a href="{% url 'gym:matriculas_cadastrar' %}">
+    Cadastrar matrícula
+</a>
+
+<hr>
+
+{% if matriculas %}
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Aluno</th>
+            <th>Modalidade</th>
+            <th>Quantidade de aulas</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for matricula in matriculas %}
+        <tr>
+            <td>{{ matricula.codigo_matr }}</td>
+
+            <td>{{ matricula.nome_aluno }}</td>
+
+            <td>{{ matricula.descricao_modalidade }}</td>
+
+            <td>{{ matricula.qtde_aulas }}</td>
+
+            <td>
+                <a href="{% url 'gym:matriculas_detalhes' matricula.codigo_matr %}">
+                    Ver detalhes
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<p>Nenhuma matrícula cadastrada.</p>
+
+{% endif %}
+
+{% endblock %}

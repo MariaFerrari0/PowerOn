@@ -1,0 +1,91 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Cadastrar Matrícula - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>CADASTRAR MATRÍCULA</h1>
+
+{% if erro %}
+    <p>{{ erro }}</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <label for="codigo_matr">
+        Código:
+    </label>
+
+    <input
+        type="number"
+        id="codigo_matr"
+        name="codigo_matr"
+        min="1"
+        required
+    >
+
+    <label for="cod_aluno">
+        Aluno:
+    </label>
+
+    <select
+        id="cod_aluno"
+        name="cod_aluno"
+        required
+    >
+        <option value="">
+            Selecione um aluno
+        </option>
+
+        {% for aluno in alunos %}
+            <option value="{{ aluno.codigo }}">
+                {{ aluno.codigo }} - {{ aluno.nome }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="cod_modalidade">
+        Modalidade:
+    </label>
+
+    <select
+        id="cod_modalidade"
+        name="cod_modalidade"
+        required
+    >
+        <option value="">
+            Selecione uma modalidade
+        </option>
+
+        {% for modalidade in modalidades %}
+            <option value="{{ modalidade.codigo_modalidade }}">
+                {{ modalidade.codigo_modalidade }} - {{ modalidade.descricao }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="qtde_aulas">
+        Quantidade de aulas:
+    </label>
+
+    <input
+        type="number"
+        id="qtde_aulas"
+        name="qtde_aulas"
+        min="1"
+        required
+    >
+
+    <button type="submit">
+        Cadastrar
+    </button>
+</form>
+
+<a href="{% url 'gym:matriculas_lista' %}">
+    Voltar para matrículas
+</a>
+
+{% endblock %}

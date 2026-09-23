@@ -1,12 +1,12 @@
 {% extends "gym/base.html" %}
 
-{% block title %}
-    Detalhes da Matrícula - PowerOn
-{% endblock %}
+{% block title %}Excluir Matrícula - PowerOn{% endblock %}
 
 {% block content %}
 
-<h1>DETALHES DA MATRÍCULA</h1>
+<h1>EXCLUIR MATRÍCULA</h1>
+
+<p>Tem certeza que deseja excluir esta matrícula?</p>
 
 <p>
     <strong>Código:</strong>
@@ -28,14 +28,20 @@
     {{ matricula.qtde_aulas }}
 </p>
 
-<hr>
+{% if erro %}
+    <p>{{ erro }}</p>
+{% endif %}
 
-<a href="{% url 'gym:matriculas_excluir' matricula.codigo_matr %}">
-    Excluir matrícula
-</a>
+<form method="post">
+    {% csrf_token %}
 
-<a href="{% url 'gym:matriculas_lista' %}">
-    Voltar para matrículas
+    <button type="submit">
+        Confirmar exclusão
+    </button>
+</form>
+
+<a href="{% url 'gym:matriculas_detalhes' matricula.codigo_matr %}">
+    Cancelar
 </a>
 
 {% endblock %}
