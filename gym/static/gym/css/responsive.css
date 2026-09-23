@@ -5,7 +5,24 @@
 
 
 /* =========================================================
-   TABLETS
+   DESKTOP
+   Acima de 1000px
+   ========================================================= */
+
+/*
+   No desktop a sidebar fica fixa.
+   O .main-content já recebe:
+   
+   width: calc(100% - 280px);
+   margin-left: 280px;
+
+   através do components.css.
+*/
+
+
+/* =========================================================
+   TABLET
+   1000px até 851px
    ========================================================= */
 
 @media screen and (max-width: 1000px) {
@@ -15,17 +32,19 @@
        ----------------------------------------------------- */
 
     .sidebar {
-        width: 230px;
+        width: 280px;
     }
 
+
     .main-content {
-        width: calc(100% - 230px);
-        margin-left: 230px;
+        width: calc(100% - 280px);
+
+        margin-left: 280px;
     }
 
 
     /* -----------------------------------------------------
-       HOME E PÁGINAS
+       HOME
        ----------------------------------------------------- */
 
     .home {
@@ -35,18 +54,6 @@
         padding: 40px 25px;
     }
 
-
-    .faturamento {
-        width: 100%;
-        max-width: 100%;
-
-        padding: 40px 25px;
-    }
-
-
-    /* -----------------------------------------------------
-       CARDS DA HOME
-       ----------------------------------------------------- */
 
     .home .cards-grid {
         grid-template-columns:
@@ -63,14 +70,32 @@
 
 
     /* -----------------------------------------------------
-       FORMULÁRIOS
+       PÁGINAS INTERNAS
+       ----------------------------------------------------- */
+
+    .faturamento {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 40px 25px;
+    }
+
+
+    /* -----------------------------------------------------
+       CARDS
        ----------------------------------------------------- */
 
     .card {
         width: 100%;
         max-width: 100%;
+
+        box-sizing: border-box;
     }
 
+
+    /* -----------------------------------------------------
+       FORMULÁRIOS
+       ----------------------------------------------------- */
 
     .form-group {
         width: 100%;
@@ -80,7 +105,22 @@
     input,
     select,
     textarea {
+        width: 100%;
         max-width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    /* -----------------------------------------------------
+       DETALHES
+       ----------------------------------------------------- */
+
+    .detalhes-card {
+        width: 100%;
+        max-width: 100%;
+
+        box-sizing: border-box;
     }
 
 
@@ -93,6 +133,8 @@
         max-width: 100%;
 
         overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
     }
 
 
@@ -107,34 +149,33 @@
 
     .page-header {
         width: 100%;
-    }
 
-
-    /* -----------------------------------------------------
-       DETALHES
-       ----------------------------------------------------- */
-
-    .detalhes-card {
-        width: 100%;
-        max-width: 100%;
+        box-sizing: border-box;
     }
 
 }
 
 
 /* =========================================================
-   TELAS MÉDIAS / TABLETS PEQUENOS
+   TABLET PEQUENO / MOBILE
+   Até 850px
    ========================================================= */
 
 @media screen and (max-width: 850px) {
 
     /*
-     * A partir daqui a sidebar deixa de ficar fixa
-     * ocupando espaço permanente.
+     * A partir daqui a sidebar deixa de ocupar espaço
+     * permanente na tela.
      */
 
+    /* -----------------------------------------------------
+       SIDEBAR
+       ----------------------------------------------------- */
+
     .sidebar {
-        width: 250px;
+        width: 280px;
+
+        height: 100vh;
 
         transform: translateX(-100%);
 
@@ -151,6 +192,19 @@
     }
 
 
+    /* -----------------------------------------------------
+       BOTÃO FECHAR
+       ----------------------------------------------------- */
+
+    .sidebar .sidebar-close {
+        display: flex;
+    }
+
+
+    /* -----------------------------------------------------
+       CONTEÚDO PRINCIPAL
+       ----------------------------------------------------- */
+
     .main-content {
         width: 100%;
 
@@ -159,7 +213,7 @@
 
 
     /* -----------------------------------------------------
-       BOTÃO MOBILE
+       BOTÃO MENU
        ----------------------------------------------------- */
 
     .menu-mobile {
@@ -176,16 +230,23 @@
         width: 45px;
         height: 45px;
 
-        border: 1px solid var(--cor-roxo);
+        padding: 0;
 
-        border-radius: var(--raio-medio);
+        border:
+            1px solid var(--cor-roxo);
+
+        border-radius:
+            var(--raio-medio);
 
         background:
             var(--cor-fundo-secundario);
 
-        color: var(--cor-verde);
+        color:
+            var(--cor-verde);
 
         font-size: 22px;
+
+        line-height: 1;
 
         cursor: pointer;
 
@@ -232,7 +293,7 @@
 
 
     /* -----------------------------------------------------
-       CONTEÚDO
+       HOME
        ----------------------------------------------------- */
 
     .home {
@@ -241,8 +302,14 @@
 
         padding:
             80px 25px 40px;
+
+        box-sizing: border-box;
     }
 
+
+    /* -----------------------------------------------------
+       FATURAMENTO
+       ----------------------------------------------------- */
 
     .faturamento {
         width: 100%;
@@ -250,6 +317,8 @@
 
         padding:
             80px 25px 40px;
+
+        box-sizing: border-box;
     }
 
 
@@ -272,7 +341,7 @@
 
 
     /* -----------------------------------------------------
-       FORMULÁRIOS
+       CARDS
        ----------------------------------------------------- */
 
     .card {
@@ -280,8 +349,14 @@
         max-width: 100%;
 
         padding: 25px;
+
+        box-sizing: border-box;
     }
 
+
+    /* -----------------------------------------------------
+       FORMULÁRIOS
+       ----------------------------------------------------- */
 
     .form-group {
         width: 100%;
@@ -291,8 +366,21 @@
     input,
     select,
     textarea {
+        display: block;
+
         width: 100%;
         max-width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    /* -----------------------------------------------------
+       BOTÕES DO FORMULÁRIO
+       ----------------------------------------------------- */
+
+    .form-actions {
+        width: 100%;
 
         box-sizing: border-box;
     }
@@ -307,6 +395,8 @@
         max-width: 100%;
 
         padding: 25px;
+
+        box-sizing: border-box;
     }
 
 
@@ -322,11 +412,15 @@
        ----------------------------------------------------- */
 
     .relatorio-card {
+        width: 100%;
+
         flex-direction: column;
 
         align-items: stretch;
 
         gap: 20px;
+
+        box-sizing: border-box;
     }
 
 
@@ -344,6 +438,8 @@
         max-width: 100%;
 
         overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
     }
 
 
@@ -355,13 +451,24 @@
 
 
 /* =========================================================
-   CELULARES
+   CELULAR
+   Até 650px
    ========================================================= */
 
 @media screen and (max-width: 650px) {
 
     body {
         overflow-x: hidden;
+    }
+
+
+    /* -----------------------------------------------------
+       SIDEBAR
+       ----------------------------------------------------- */
+
+    .sidebar {
+        width: 280px;
+        max-width: 85vw;
     }
 
 
@@ -382,7 +489,7 @@
 
 
     /* -----------------------------------------------------
-       CABEÇALHO HOME
+       CABEÇALHO DA HOME
        ----------------------------------------------------- */
 
     .home-header {
@@ -392,6 +499,8 @@
 
     .home-header h1 {
         font-size: 2.5rem;
+
+        line-height: 1.1;
     }
 
 
@@ -403,7 +512,7 @@
 
 
     /* -----------------------------------------------------
-       CARDS
+       CARDS DA HOME
        ----------------------------------------------------- */
 
     .home .cards-grid {
@@ -425,6 +534,8 @@
         min-height: 150px;
 
         padding: 22px;
+
+        box-sizing: border-box;
     }
 
 
@@ -530,9 +641,24 @@
 
 /* =========================================================
    CELULARES MUITO PEQUENOS
+   Até 400px
    ========================================================= */
 
 @media screen and (max-width: 400px) {
+
+    /* -----------------------------------------------------
+       SIDEBAR
+       ----------------------------------------------------- */
+
+    .sidebar {
+        width: 280px;
+        max-width: 88vw;
+    }
+
+
+    /* -----------------------------------------------------
+       CONTEÚDO
+       ----------------------------------------------------- */
 
     .home {
         padding:
@@ -545,6 +671,10 @@
             75px 14px 25px;
     }
 
+
+    /* -----------------------------------------------------
+       HOME
+       ----------------------------------------------------- */
 
     .home-header h1 {
         font-size: 2.2rem;
@@ -568,6 +698,10 @@
     }
 
 
+    /* -----------------------------------------------------
+       CARDS
+       ----------------------------------------------------- */
+
     .card {
         padding: 18px;
     }
@@ -580,6 +714,19 @@
 
     .relatorio-card {
         padding: 20px;
+    }
+
+
+    /* -----------------------------------------------------
+       BOTÃO MENU
+       ----------------------------------------------------- */
+
+    .menu-mobile {
+        top: 14px;
+        left: 14px;
+
+        width: 42px;
+        height: 42px;
     }
 
 }
