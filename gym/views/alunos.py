@@ -16,9 +16,7 @@ def lista(request):
                 aluno.data_nascimento,
                 "%Y-%m-%d"
             )
-
             aluno.data_nascimento = data.strftime("%d/%m/%Y")
-
         except ValueError:
             pass
 
@@ -102,9 +100,7 @@ def detalhes(request, codigo):
             aluno.data_nascimento,
             "%Y-%m-%d"
         )
-
         data_nascimento = data.strftime("%d/%m/%Y")
-
     except ValueError:
         data_nascimento = aluno.data_nascimento
 
@@ -119,4 +115,98 @@ def detalhes(request, codigo):
         request,
         "gym/alunos/detalhes.html",
         contexto
+    )
+
+
+def editar(request, codigo):
+    aluno = aluno_service.buscar(codigo)
+
+    if aluno is None:
+        return redirect("gym:alunos_lista")
+
+    erro = None
+
+    if request.method == "POST":
+        try:
+            nome = request.POST.get("nome", "").strip()
+            data_nascimento = request.POST.get(
+                "data_nascimento",
+                ""
+            ).strip()
+            peso = float(request.POST.get("peso"))
+            altura = float(request.POST.get("altura"))
+
+            if not nome:
+                raise ValueError(
+                    "O nome do aluno é obrigatório."
+                )
+
+            if peso <= 0:
+                raise ValueError(
+                    "O peso deve ser maior que zero."
+                )
+
+            if altura <= 0:
+                raise ValueError(
+                    "A altura deve ser maior que zero."
+                )
+
+            aluno_atualizado = Aluno(
+                codigo=codigo,
+                nome=nome,
+                data_nascimento=data_nascimento,
+                peso=peso,
+                altura=altura,
+            )
+
+            aluno_service.atualizar(
+                codigo,
+                aluno_atualizado
+            )
+
+            return redirect(
+                "gym:alunos_detalhes",
+                codigo=codigo
+            )
+
+        except (ValueError, TypeError) as e:
+            erro = str(e)
+
+    contexto = {
+        "aluno": aluno,
+        "erro": erro,
+    }
+
+    return render(
+        request,
+        "gym/alunos/editar.html",
+        contexto
+    )
+
+
+def excluir(request, codigo):
+    aluno = aluno_service.buscar(codigo)
+
+    if aluno is None:
+        return redirect("gym:alunos_lista")
+
+    if request.method == "POST":
+        try:
+            aluno_service.remover(codigo)
+            return redirect("gym:alunos_lista")
+        except ValueError as e:
+            erro = str(e)
+            return render(
+                request,
+                "gym/alunos/confirmar_exclusao.html",
+                {
+                    "aluno": aluno,
+                    "erro": erro,
+                }
+            )
+
+    return render(
+        request,
+        "gym/alunos/confirmar_exclusao.html",
+        {"aluno": aluno}
     )

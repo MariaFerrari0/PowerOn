@@ -1,0 +1,37 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Excluir Aluno - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>EXCLUIR ALUNO</h1>
+
+<p>
+    Tem certeza que deseja excluir este aluno?
+</p>
+
+<p>
+    <strong>Código:</strong>
+    {{ aluno.codigo }}
+</p>
+
+<p>
+    <strong>Nome:</strong>
+    {{ aluno.nome }}
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit">
+        Confirmar exclusão
+    </button>
+</form>
+
+<a href="{% url 'gym:alunos_detalhes' aluno.codigo %}">
+    Cancelar
+</a>
+
+{% endblock %}

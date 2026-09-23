@@ -1,0 +1,51 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Professores - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>PROFESSORES</h1>
+
+<a href="{% url 'gym:home' %}">
+    Voltar para Home
+</a>
+
+<a href="{% url 'gym:professores_cadastrar' %}">
+    Cadastrar professor
+</a>
+
+<hr>
+
+{% if professores %}
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for professor in professores %}
+        <tr>
+            <td>{{ professor.codigo_prof }}</td>
+            <td>{{ professor.nome }}</td>
+            <td>{{ professor.endereco }}</td>
+            <td>{{ professor.telefone }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<p>Nenhum professor cadastrado.</p>
+
+{% endif %}
+
+{% endblock %}

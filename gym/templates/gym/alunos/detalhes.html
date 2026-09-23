@@ -1,20 +1,38 @@
 {% extends "gym/base.html" %}
 
-{% block title %}Detalhes do Aluno{% endblock %}
+{% block title %}
+    Detalhes do Aluno - PowerOn
+{% endblock %}
 
 {% block content %}
+
 <h1>DETALHES DO ALUNO</h1>
 
 <div>
-    <p><strong>Código:</strong> {{ aluno.codigo }}</p>
+    <p>
+        <strong>Código:</strong>
+        {{ aluno.codigo }}
+    </p>
 
-    <p><strong>Nome:</strong> {{ aluno.nome }}</p>
+    <p>
+        <strong>Nome:</strong>
+        {{ aluno.nome }}
+    </p>
 
-    <p><strong>Data de nascimento:</strong> {{ data_nascimento }}</p>
+    <p>
+        <strong>Data de nascimento:</strong>
+        {{ data_nascimento }}
+    </p>
 
-    <p><strong>Peso:</strong> {{ aluno.peso }} kg</p>
+    <p>
+        <strong>Peso:</strong>
+        {{ aluno.peso }} kg
+    </p>
 
-    <p><strong>Altura:</strong> {{ aluno.altura }} m</p>
+    <p>
+        <strong>Altura:</strong>
+        {{ aluno.altura }} cm
+    </p>
 </div>
 
 <hr>
@@ -32,6 +50,14 @@
 </p>
 
 <hr>
+
+<a href="{% url 'gym:alunos_editar' aluno.codigo %}">
+    Editar aluno
+</a>
+
+<a href="{% url 'gym:alunos_excluir' aluno.codigo %}">
+    Excluir aluno
+</a>
 
 <a href="{% url 'gym:alunos_lista' %}">
     Voltar para alunos
