@@ -8,6 +8,7 @@ from ..services.inicializacao import modalidade_service
 
 def lista(request):
     matriculas = matricula_service.listar()
+
     alunos = aluno_service.listar()
     modalidades = modalidade_service.listar()
 
@@ -193,5 +194,91 @@ def excluir(request, codigo_matr):
     return render(
         request,
         "gym/matriculas/confirmar_exclusao.html",
+        contexto
+    )
+
+
+def editar(request, codigo_matr):
+    matricula = matricula_service.buscar(
+        codigo_matr
+    )
+
+    if matricula is None:
+        return redirect(
+            "gym:matriculas_lista"
+        )
+
+    alunos = aluno_service.listar()
+    modalidades = modalidade_service.listar()
+
+    erro = None
+
+    if request.method == "POST":
+        try:
+            cod_aluno = int(
+                request.POST.get("cod_aluno")
+            )
+
+            cod_modalidade = int(
+                request.POST.get("cod_modalidade")
+            )
+
+            qtde_aulas = int(
+                request.POST.get("qtde_aulas")
+            )
+
+            if qtde_aulas <= 0:
+                raise ValueError(
+                    "A quantidade de aulas deve ser maior que zero."
+                )
+
+            matricula_atualizada = Matricula(
+                codigo_matr=codigo_matr,
+                cod_aluno=cod_aluno,
+                cod_modalidade=cod_modalidade,
+                qtde_aulas=qtde_aulas,
+            )
+
+            matricula_service.atualizar(
+                codigo_matr,
+                matricula_atualizada
+            )
+
+            return redirect(
+                "gym:matriculas_detalhes",
+                codigo_matr=codigo_matr
+            )
+
+        except (ValueError, TypeError) as e:
+            erro = str(e)
+
+    aluno = aluno_service.buscar(
+        matricula.cod_aluno
+    )
+
+    modalidade = modalidade_service.buscar(
+        matricula.cod_modalidade
+    )
+
+    if aluno is not None:
+        matricula.nome_aluno = aluno.nome
+    else:
+        matricula.nome_aluno = "Aluno não encontrado"
+
+    if modalidade is not None:
+        matricula.descricao_modalidade = modalidade.descricao
+    else:
+        matricula.descricao_modalidade = "Modalidade não encontrada"
+
+    contexto = {
+        "matricula": matricula,
+        "alunos": alunos,
+        "modalidades": modalidades,
+        "erro": erro,
+    }
+
+    return render(
+        request,
+        "gym/matriculas/editar.html",
         contexto
     )

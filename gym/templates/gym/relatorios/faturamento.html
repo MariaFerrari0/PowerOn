@@ -1,0 +1,80 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Faturamento - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>RELATÓRIO DE FATURAMENTO</h1>
+
+<a href="{% url 'gym:home' %}">
+    Voltar para Home
+</a>
+
+<hr>
+
+{% if relatorio %}
+
+<table border="1">
+
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Modalidade</th>
+            <th>Professor</th>
+            <th>Valor da aula</th>
+            <th>Total de aulas</th>
+            <th>Faturamento</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for item in relatorio %}
+
+        <tr>
+
+            <td>
+                {{ item.codigo_modalidade }}
+            </td>
+
+            <td>
+                {{ item.descricao }}
+            </td>
+
+            <td>
+                {{ item.nome_professor }}
+            </td>
+
+            <td>
+                R$ {{ item.valor_aula|floatformat:2 }}
+            </td>
+
+            <td>
+                {{ item.total_aulas }}
+            </td>
+
+            <td>
+                <strong>
+                    R$ {{ item.faturamento|floatformat:2 }}
+                </strong>
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% else %}
+
+<p>
+    Nenhuma modalidade cadastrada para gerar o relatório.
+</p>
+
+{% endif %}
+
+{% endblock %}

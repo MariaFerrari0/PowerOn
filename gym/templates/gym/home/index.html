@@ -5,12 +5,25 @@
 {% endblock %}
 
 {% block content %}
-    <h1>PowerOn</h1>
 
-    <p>Bem-vinda ao sistema PowerOn!</p>
+<h1>PowerOn</h1>
 
-    <p>Alunos: {{ total_alunos }}</p>
-    <p>Professores: {{ total_professores }}</p>
-    <p>Modalidades: {{ total_modalidades }}</p>
-    <p>Matrículas: {{ total_matriculas }}</p>
+<p>Bem-vinda ao sistema PowerOn!</p>
+
+<p>Alunos: {{ total_alunos }}</p>
+
+<p>Professores: {{ total_professores }}</p>
+
+<p>Modalidades: {{ total_modalidades }}</p>
+
+<p>Matrículas: {{ total_matriculas }}</p>
+
+<hr>
+
+<h2>Relatórios</h2>
+
+<a href="{% url 'gym:faturamento' %}">
+    Relatório de Faturamento
+</a>
+
 {% endblock %}

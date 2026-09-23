@@ -1,0 +1,109 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Editar Matrícula - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>EDITAR MATRÍCULA</h1>
+
+{% if erro %}
+    <p>{{ erro }}</p>
+{% endif %}
+
+<form method="post">
+
+    {% csrf_token %}
+
+    <label for="codigo_matr">
+        Código da matrícula:
+    </label>
+
+    <input
+        type="number"
+        id="codigo_matr"
+        value="{{ matricula.codigo_matr }}"
+        disabled
+    >
+
+    <label for="cod_aluno">
+        Aluno:
+    </label>
+
+    <select
+        id="cod_aluno"
+        name="cod_aluno"
+        required
+    >
+
+        {% for aluno in alunos %}
+
+            <option
+                value="{{ aluno.codigo }}"
+                {% if aluno.codigo == matricula.cod_aluno %}
+                    selected
+                {% endif %}
+            >
+                {{ aluno.codigo }} - {{ aluno.nome }}
+            </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label for="cod_modalidade">
+        Modalidade:
+    </label>
+
+    <select
+        id="cod_modalidade"
+        name="cod_modalidade"
+        required
+    >
+
+        {% for modalidade in modalidades %}
+
+            <option
+                value="{{ modalidade.codigo_modalidade }}"
+                {% if modalidade.codigo_modalidade == matricula.cod_modalidade %}
+                    selected
+                {% endif %}
+            >
+                {{ modalidade.codigo_modalidade }} - {{ modalidade.descricao }}
+            </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label for="qtde_aulas">
+        Quantidade de aulas:
+    </label>
+
+    <input
+        type="number"
+        id="qtde_aulas"
+        name="qtde_aulas"
+        min="1"
+        value="{{ matricula.qtde_aulas }}"
+        required
+    >
+
+    <button type="submit">
+        Salvar alterações
+    </button>
+
+</form>
+
+<hr>
+
+<a href="{% url 'gym:matriculas_detalhes' matricula.codigo_matr %}">
+    Cancelar
+</a>
+
+<a href="{% url 'gym:matriculas_lista' %}">
+    Voltar para matrículas
+</a>
+
+{% endblock %}
