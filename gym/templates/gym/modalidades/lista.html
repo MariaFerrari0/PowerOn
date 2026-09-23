@@ -1,0 +1,69 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Modalidades - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>MODALIDADES</h1>
+
+<a href="{% url 'gym:home' %}">
+    Voltar para Home
+</a>
+
+<a href="{% url 'gym:modalidades_cadastrar' %}">
+    Cadastrar modalidade
+</a>
+
+<hr>
+
+{% if modalidades %}
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Professor</th>
+            <th>Valor da aula</th>
+            <th>Limite de alunos</th>
+            <th>Total de alunos</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for modalidade in modalidades %}
+        <tr>
+            <td>{{ modalidade.codigo_modalidade }}</td>
+
+            <td>{{ modalidade.descricao }}</td>
+
+            <td>{{ modalidade.nome_professor }}</td>
+
+            <td>
+                R$ {{ modalidade.valor_aula|floatformat:2 }}
+            </td>
+
+            <td>{{ modalidade.limite_alunos }}</td>
+
+            <td>{{ modalidade.total_alunos }}</td>
+
+            <td>
+                <a href="{% url 'gym:modalidades_detalhes' modalidade.codigo_modalidade %}">
+                    Ver detalhes
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<p>Nenhuma modalidade cadastrada.</p>
+
+{% endif %}
+
+{% endblock %}

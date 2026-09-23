@@ -1,0 +1,55 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Detalhes da Modalidade - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>DETALHES DA MODALIDADE</h1>
+
+<p>
+    <strong>Código:</strong>
+    {{ modalidade.codigo_modalidade }}
+</p>
+
+<p>
+    <strong>Descrição:</strong>
+    {{ modalidade.descricao }}
+</p>
+
+<p>
+    <strong>Professor:</strong>
+    {{ modalidade.nome_professor }}
+</p>
+
+<p>
+    <strong>Valor da aula:</strong>
+    R$ {{ modalidade.valor_aula|floatformat:2 }}
+</p>
+
+<p>
+    <strong>Limite de alunos:</strong>
+    {{ modalidade.limite_alunos }}
+</p>
+
+<p>
+    <strong>Total de alunos:</strong>
+    {{ modalidade.total_alunos }}
+</p>
+
+<hr>
+
+<a href="{% url 'gym:modalidades_editar' modalidade.codigo_modalidade %}">
+    Editar modalidade
+</a>
+
+<a href="{% url 'gym:modalidades_excluir' modalidade.codigo_modalidade %}">
+    Excluir modalidade
+</a>
+
+<a href="{% url 'gym:modalidades_lista' %}">
+    Voltar para modalidades
+</a>
+
+{% endblock %}

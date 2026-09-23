@@ -1,0 +1,105 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Editar Modalidade - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>EDITAR MODALIDADE</h1>
+
+{% if erro %}
+    <p>{{ erro }}</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <label for="codigo_modalidade">
+        Código:
+    </label>
+
+    <input
+        type="number"
+        id="codigo_modalidade"
+        value="{{ modalidade.codigo_modalidade }}"
+        disabled
+    >
+
+    <label for="descricao">
+        Descrição:
+    </label>
+
+    <input
+        type="text"
+        id="descricao"
+        name="descricao"
+        value="{{ modalidade.descricao }}"
+        required
+    >
+
+    <label for="cod_prof">
+        Professor:
+    </label>
+
+    <select
+        id="cod_prof"
+        name="cod_prof"
+        required
+    >
+
+        {% for professor in professores %}
+            <option
+                value="{{ professor.codigo_prof }}"
+                {% if professor.codigo_prof == modalidade.cod_prof %}
+                    selected
+                {% endif %}
+            >
+                {{ professor.codigo_prof }} - {{ professor.nome }}
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <label for="valor_aula">
+        Valor da aula:
+    </label>
+
+    <input
+        type="number"
+        id="valor_aula"
+        name="valor_aula"
+        step="0.01"
+        min="0.01"
+        value="{{ modalidade.valor_aula }}"
+        required
+    >
+
+    <label for="limite_alunos">
+        Limite de alunos:
+    </label>
+
+    <input
+        type="number"
+        id="limite_alunos"
+        name="limite_alunos"
+        min="1"
+        value="{{ modalidade.limite_alunos }}"
+        required
+    >
+
+    <p>
+        <strong>Total atual de alunos:</strong>
+        {{ modalidade.total_alunos }}
+    </p>
+
+    <button type="submit">
+        Salvar alterações
+    </button>
+</form>
+
+<a href="{% url 'gym:modalidades_detalhes' modalidade.codigo_modalidade %}">
+    Cancelar
+</a>
+
+{% endblock %}

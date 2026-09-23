@@ -1,0 +1,45 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Detalhes do Professor - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>DETALHES DO PROFESSOR</h1>
+
+<p>
+    <strong>Código:</strong>
+    {{ professor.codigo_prof }}
+</p>
+
+<p>
+    <strong>Nome:</strong>
+    {{ professor.nome }}
+</p>
+
+<p>
+    <strong>Endereço:</strong>
+    {{ professor.endereco }}
+</p>
+
+<p>
+    <strong>Telefone:</strong>
+    {{ professor.telefone }}
+</p>
+
+<hr>
+
+<a href="{% url 'gym:professores_editar' professor.codigo_prof %}">
+    Editar professor
+</a>
+
+<a href="{% url 'gym:professores_excluir' professor.codigo_prof %}">
+    Excluir professor
+</a>
+
+<a href="{% url 'gym:professores_lista' %}">
+    Voltar para professores
+</a>
+
+{% endblock %}

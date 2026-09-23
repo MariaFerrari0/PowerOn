@@ -1,0 +1,51 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Excluir Modalidade - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>EXCLUIR MODALIDADE</h1>
+
+<p>
+    Tem certeza que deseja excluir esta modalidade?
+</p>
+
+<p>
+    <strong>Código:</strong>
+    {{ modalidade.codigo_modalidade }}
+</p>
+
+<p>
+    <strong>Descrição:</strong>
+    {{ modalidade.descricao }}
+</p>
+
+<p>
+    <strong>Professor:</strong>
+    {{ modalidade.nome_professor }}
+</p>
+
+<p>
+    <strong>Total de alunos:</strong>
+    {{ modalidade.total_alunos }}
+</p>
+
+{% if erro %}
+    <p>{{ erro }}</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit">
+        Confirmar exclusão
+    </button>
+</form>
+
+<a href="{% url 'gym:modalidades_detalhes' modalidade.codigo_modalidade %}">
+    Cancelar
+</a>
+
+{% endblock %}

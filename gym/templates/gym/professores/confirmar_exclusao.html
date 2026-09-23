@@ -1,0 +1,41 @@
+{% extends "gym/base.html" %}
+
+{% block title %}
+    Excluir Professor - PowerOn
+{% endblock %}
+
+{% block content %}
+
+<h1>EXCLUIR PROFESSOR</h1>
+
+<p>
+    Tem certeza que deseja excluir este professor?
+</p>
+
+<p>
+    <strong>Código:</strong>
+    {{ professor.codigo_prof }}
+</p>
+
+<p>
+    <strong>Nome:</strong>
+    {{ professor.nome }}
+</p>
+
+{% if erro %}
+    <p>{{ erro }}</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit">
+        Confirmar exclusão
+    </button>
+</form>
+
+<a href="{% url 'gym:professores_detalhes' professor.codigo_prof %}">
+    Cancelar
+</a>
+
+{% endblock %}

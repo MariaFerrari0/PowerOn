@@ -27,6 +27,7 @@
             <th>Nome</th>
             <th>Endereço</th>
             <th>Telefone</th>
+            <th>Ações</th>
         </tr>
     </thead>
 
@@ -37,6 +38,12 @@
             <td>{{ professor.nome }}</td>
             <td>{{ professor.endereco }}</td>
             <td>{{ professor.telefone }}</td>
+
+            <td>
+                <a href="{% url 'gym:professores_detalhes' professor.codigo_prof %}">
+                    Ver detalhes
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
