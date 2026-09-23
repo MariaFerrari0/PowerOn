@@ -6,46 +6,127 @@
 
 {% block content %}
 
-<h1>EXCLUIR MODALIDADE</h1>
+<div class="home">
 
-<p>
-    Tem certeza que deseja excluir esta modalidade?
-</p>
+    <div class="page-header">
 
-<p>
-    <strong>Código:</strong>
-    {{ modalidade.codigo_modalidade }}
-</p>
+        <div>
 
-<p>
-    <strong>Descrição:</strong>
-    {{ modalidade.descricao }}
-</p>
+            <h1>EXCLUIR MODALIDADE</h1>
 
-<p>
-    <strong>Professor:</strong>
-    {{ modalidade.nome_professor }}
-</p>
+            <p>
+                Confirme a exclusão da modalidade.
+            </p>
 
-<p>
-    <strong>Total de alunos:</strong>
-    {{ modalidade.total_alunos }}
-</p>
+        </div>
 
-{% if erro %}
-    <p>{{ erro }}</p>
-{% endif %}
+    </div>
 
-<form method="post">
-    {% csrf_token %}
 
-    <button type="submit">
-        Confirmar exclusão
-    </button>
-</form>
+    <div class="detalhes-card">
 
-<a href="{% url 'gym:modalidades_detalhes' modalidade.codigo_modalidade %}">
-    Cancelar
-</a>
+        <div class="mensagem mensagem-aviso">
+
+            <strong>
+                Atenção!
+            </strong>
+
+            <p>
+                Tem certeza que deseja excluir esta modalidade?
+            </p>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Código
+            </strong>
+
+            <span>
+                {{ modalidade.codigo_modalidade }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Descrição
+            </strong>
+
+            <span>
+                {{ modalidade.descricao }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Professor
+            </strong>
+
+            <span>
+                {{ modalidade.nome_professor }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Total de alunos
+            </strong>
+
+            <span>
+                {{ modalidade.total_alunos }}
+            </span>
+
+        </div>
+
+
+        {% if erro %}
+
+            <div class="mensagem mensagem-erro">
+                {{ erro }}
+            </div>
+
+        {% endif %}
+
+
+        <div class="form-actions">
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="btn btn-perigo"
+                    data-confirmar="Tem certeza que deseja excluir esta modalidade?"
+                >
+                    Confirmar exclusão
+                </button>
+
+            </form>
+
+
+            <a
+                href="{% url 'gym:modalidades_detalhes' modalidade.codigo_modalidade %}"
+                class="btn btn-verde"
+            >
+                Cancelar
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

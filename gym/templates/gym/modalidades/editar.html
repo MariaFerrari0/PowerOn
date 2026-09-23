@@ -6,100 +6,191 @@
 
 {% block content %}
 
-<h1>EDITAR MODALIDADE</h1>
+<div class="home">
 
-{% if erro %}
-    <p>{{ erro }}</p>
-{% endif %}
+    <div class="page-header">
 
-<form method="post">
-    {% csrf_token %}
+        <div>
 
-    <label for="codigo_modalidade">
-        Código:
-    </label>
+            <h1>EDITAR MODALIDADE</h1>
 
-    <input
-        type="number"
-        id="codigo_modalidade"
-        value="{{ modalidade.codigo_modalidade }}"
-        disabled
-    >
+            <p>
+                Atualize os dados da modalidade.
+            </p>
 
-    <label for="descricao">
-        Descrição:
-    </label>
+        </div>
 
-    <input
-        type="text"
-        id="descricao"
-        name="descricao"
-        value="{{ modalidade.descricao }}"
-        required
-    >
+    </div>
 
-    <label for="cod_prof">
-        Professor:
-    </label>
 
-    <select
-        id="cod_prof"
-        name="cod_prof"
-        required
-    >
+    {% if erro %}
 
-        {% for professor in professores %}
-            <option
-                value="{{ professor.codigo_prof }}"
-                {% if professor.codigo_prof == modalidade.cod_prof %}
-                    selected
-                {% endif %}
-            >
-                {{ professor.codigo_prof }} - {{ professor.nome }}
-            </option>
-        {% endfor %}
+        <div class="mensagem mensagem-erro">
+            {{ erro }}
+        </div>
 
-    </select>
+    {% endif %}
 
-    <label for="valor_aula">
-        Valor da aula:
-    </label>
 
-    <input
-        type="number"
-        id="valor_aula"
-        name="valor_aula"
-        step="0.01"
-        min="0.01"
-        value="{{ modalidade.valor_aula }}"
-        required
-    >
+    <div class="card">
 
-    <label for="limite_alunos">
-        Limite de alunos:
-    </label>
+        <form method="post">
 
-    <input
-        type="number"
-        id="limite_alunos"
-        name="limite_alunos"
-        min="1"
-        value="{{ modalidade.limite_alunos }}"
-        required
-    >
+            {% csrf_token %}
 
-    <p>
-        <strong>Total atual de alunos:</strong>
-        {{ modalidade.total_alunos }}
-    </p>
 
-    <button type="submit">
-        Salvar alterações
-    </button>
-</form>
+            <div class="form-group">
 
-<a href="{% url 'gym:modalidades_detalhes' modalidade.codigo_modalidade %}">
-    Cancelar
-</a>
+                <label for="codigo_modalidade">
+                    Código
+                </label>
+
+                <input
+                    type="number"
+                    id="codigo_modalidade"
+                    value="{{ modalidade.codigo_modalidade }}"
+                    disabled
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="descricao">
+                    Descrição
+                </label>
+
+                <input
+                    type="text"
+                    id="descricao"
+                    name="descricao"
+                    value="{{ modalidade.descricao }}"
+                    required
+                    placeholder="Ex.: Musculação"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="cod_prof">
+                    Professor
+                </label>
+
+                <select
+                    id="cod_prof"
+                    name="cod_prof"
+                    required
+                >
+
+                    {% for professor in professores %}
+
+                        <option
+                            value="{{ professor.codigo_prof }}"
+                            {% if professor.codigo_prof == modalidade.cod_prof %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ professor.codigo_prof }} - {{ professor.nome }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="valor_aula">
+                    Valor da aula (R$)
+                </label>
+
+                <input
+                    type="number"
+                    id="valor_aula"
+                    name="valor_aula"
+                    step="0.01"
+                    min="0.01"
+                    value="{{ modalidade.valor_aula }}"
+                    required
+                    placeholder="Ex.: 50.00"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="limite_alunos">
+                    Limite de alunos
+                </label>
+
+                <input
+                    type="number"
+                    id="limite_alunos"
+                    name="limite_alunos"
+                    min="1"
+                    value="{{ modalidade.limite_alunos }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="mensagem mensagem-aviso">
+
+                <strong>
+                    Total atual de alunos:
+                </strong>
+
+                {{ modalidade.total_alunos }}
+
+                <p>
+                    Esse valor é controlado automaticamente pelas matrículas.
+                </p>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Salvar alterações
+                </button>
+
+
+                <a
+                    href="{% url 'gym:modalidades_detalhes' modalidade.codigo_modalidade %}"
+                    class="btn btn-verde"
+                >
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <div class="form-actions">
+
+        <a
+            href="{% url 'gym:modalidades_lista' %}"
+            class="btn btn-verde"
+        >
+            ← Voltar para modalidades
+        </a>
+
+    </div>
+
+</div>
 
 {% endblock %}

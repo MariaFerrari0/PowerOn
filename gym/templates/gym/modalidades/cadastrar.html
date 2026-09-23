@@ -6,90 +6,163 @@
 
 {% block content %}
 
-<h1>CADASTRAR MODALIDADE</h1>
+<div class="home">
 
-{% if erro %}
-    <p>{{ erro }}</p>
-{% endif %}
+    <div class="page-header">
 
-<form method="post">
-    {% csrf_token %}
+        <div>
 
-    <label for="codigo_modalidade">
-        Código:
-    </label>
+            <h1>CADASTRAR MODALIDADE</h1>
 
-    <input
-        type="number"
-        id="codigo_modalidade"
-        name="codigo_modalidade"
-        min="1"
-        required
-    >
+            <p>
+                Cadastre uma nova modalidade na academia.
+            </p>
 
-    <label for="descricao">
-        Descrição:
-    </label>
+        </div>
 
-    <input
-        type="text"
-        id="descricao"
-        name="descricao"
-        required
-    >
+    </div>
 
-    <label for="cod_prof">
-        Professor:
-    </label>
 
-    <select
-        id="cod_prof"
-        name="cod_prof"
-        required
-    >
-        <option value="">
-            Selecione um professor
-        </option>
+    {% if erro %}
 
-        {% for professor in professores %}
-            <option value="{{ professor.codigo_prof }}">
-                {{ professor.codigo_prof }} - {{ professor.nome }}
-            </option>
-        {% endfor %}
-    </select>
+        <div class="mensagem mensagem-erro">
+            {{ erro }}
+        </div>
 
-    <label for="valor_aula">
-        Valor da aula:
-    </label>
+    {% endif %}
 
-    <input
-        type="number"
-        id="valor_aula"
-        name="valor_aula"
-        step="0.01"
-        min="0.01"
-        required
-    >
 
-    <label for="limite_alunos">
-        Limite de alunos:
-    </label>
+    <div class="card">
 
-    <input
-        type="number"
-        id="limite_alunos"
-        name="limite_alunos"
-        min="1"
-        required
-    >
+        <form method="post">
 
-    <button type="submit">
-        Cadastrar
-    </button>
-</form>
+            {% csrf_token %}
 
-<a href="{% url 'gym:modalidades_lista' %}">
-    Voltar para modalidades
-</a>
+
+            <div class="form-group">
+
+                <label for="codigo_modalidade">
+                    Código
+                </label>
+
+                <input
+                    type="number"
+                    id="codigo_modalidade"
+                    name="codigo_modalidade"
+                    min="1"
+                    required
+                    placeholder="Digite o código da modalidade"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="descricao">
+                    Descrição
+                </label>
+
+                <input
+                    type="text"
+                    id="descricao"
+                    name="descricao"
+                    required
+                    placeholder="Ex.: Musculação"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="cod_prof">
+                    Professor
+                </label>
+
+                <select
+                    id="cod_prof"
+                    name="cod_prof"
+                    required
+                >
+
+                    <option value="">
+                        Selecione um professor
+                    </option>
+
+                    {% for professor in professores %}
+
+                        <option value="{{ professor.codigo_prof }}">
+                            {{ professor.codigo_prof }} - {{ professor.nome }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="valor_aula">
+                    Valor da aula (R$)
+                </label>
+
+                <input
+                    type="number"
+                    id="valor_aula"
+                    name="valor_aula"
+                    step="0.01"
+                    min="0.01"
+                    required
+                    placeholder="Ex.: 50.00"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="limite_alunos">
+                    Limite de alunos
+                </label>
+
+                <input
+                    type="number"
+                    id="limite_alunos"
+                    name="limite_alunos"
+                    min="1"
+                    required
+                    placeholder="Ex.: 20"
+                >
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Cadastrar modalidade
+                </button>
+
+
+                <a
+                    href="{% url 'gym:modalidades_lista' %}"
+                    class="btn btn-verde"
+                >
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}

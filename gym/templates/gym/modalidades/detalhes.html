@@ -6,50 +6,132 @@
 
 {% block content %}
 
-<h1>DETALHES DA MODALIDADE</h1>
+<div class="home">
 
-<p>
-    <strong>Código:</strong>
-    {{ modalidade.codigo_modalidade }}
-</p>
+    <div class="page-header">
 
-<p>
-    <strong>Descrição:</strong>
-    {{ modalidade.descricao }}
-</p>
+        <div>
 
-<p>
-    <strong>Professor:</strong>
-    {{ modalidade.nome_professor }}
-</p>
+            <h1>DETALHES DA MODALIDADE</h1>
 
-<p>
-    <strong>Valor da aula:</strong>
-    R$ {{ modalidade.valor_aula|floatformat:2 }}
-</p>
+            <p>
+                Informações da modalidade cadastrada.
+            </p>
 
-<p>
-    <strong>Limite de alunos:</strong>
-    {{ modalidade.limite_alunos }}
-</p>
+        </div>
 
-<p>
-    <strong>Total de alunos:</strong>
-    {{ modalidade.total_alunos }}
-</p>
+    </div>
 
-<hr>
 
-<a href="{% url 'gym:modalidades_editar' modalidade.codigo_modalidade %}">
-    Editar modalidade
-</a>
+    <div class="detalhes-card">
 
-<a href="{% url 'gym:modalidades_excluir' modalidade.codigo_modalidade %}">
-    Excluir modalidade
-</a>
+        <div class="detalhes-item">
 
-<a href="{% url 'gym:modalidades_lista' %}">
-    Voltar para modalidades
-</a>
+            <strong>
+                Código
+            </strong>
+
+            <span>
+                {{ modalidade.codigo_modalidade }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Descrição
+            </strong>
+
+            <span>
+                {{ modalidade.descricao }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Professor
+            </strong>
+
+            <span>
+                {{ modalidade.nome_professor }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Valor da aula
+            </strong>
+
+            <span>
+                R$ {{ modalidade.valor_aula|floatformat:2 }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Limite de alunos
+            </strong>
+
+            <span>
+                {{ modalidade.limite_alunos }}
+            </span>
+
+        </div>
+
+
+        <div class="detalhes-item">
+
+            <strong>
+                Total de alunos
+            </strong>
+
+            <span>
+                {{ modalidade.total_alunos }}
+            </span>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <a
+                href="{% url 'gym:modalidades_editar' modalidade.codigo_modalidade %}"
+                class="btn"
+            >
+                Editar modalidade
+            </a>
+
+
+            <a
+                href="{% url 'gym:modalidades_excluir' modalidade.codigo_modalidade %}"
+                class="btn btn-perigo"
+            >
+                Excluir modalidade
+            </a>
+
+
+            <a
+                href="{% url 'gym:modalidades_lista' %}"
+                class="btn btn-verde"
+            >
+                Voltar para modalidades
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
