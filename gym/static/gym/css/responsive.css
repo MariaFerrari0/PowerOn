@@ -1,732 +1,403 @@
 /* =========================================================
    POWERON - RESPONSIVE
-   Responsividade geral do sistema
    ========================================================= */
-
-
-/* =========================================================
-   DESKTOP
-   Acima de 1000px
-   ========================================================= */
-
-/*
-   No desktop a sidebar fica fixa.
-   O .main-content já recebe:
-   
-   width: calc(100% - 280px);
-   margin-left: 280px;
-
-   através do components.css.
-*/
-
 
 /* =========================================================
    TABLET
-   1000px até 851px
    ========================================================= */
 
 @media screen and (max-width: 1000px) {
 
-    /* -----------------------------------------------------
-       SIDEBAR
-       ----------------------------------------------------- */
-
-    .sidebar {
-        width: 280px;
-    }
-
-
-    .main-content {
-        width: calc(100% - 280px);
-
-        margin-left: 280px;
-    }
-
-
-    /* -----------------------------------------------------
-       HOME
-       ----------------------------------------------------- */
-
-    .home {
+    .home,
+    .page-container,
+    .faturamento,
+    .dashboard {
         width: 100%;
         max-width: 100%;
-
-        padding: 40px 25px;
+        box-sizing: border-box;
+        padding-left: 25px;
+        padding-right: 25px;
     }
-
 
     .home .cards-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 20px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-
-    .home .stat-card {
-        width: 100%;
-        min-width: 0;
+    .dashboard-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-
-    /* -----------------------------------------------------
-       PÁGINAS INTERNAS
-       ----------------------------------------------------- */
-
-    .faturamento {
-        width: 100%;
-        max-width: 100%;
-
-        padding: 40px 25px;
+    .management-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .quick-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-    /* -----------------------------------------------------
-       CARDS
-       ----------------------------------------------------- */
-
-    .card {
+    .card,
+    .detalhes-card {
         width: 100%;
         max-width: 100%;
-
         box-sizing: border-box;
     }
-
-
-    /* -----------------------------------------------------
-       FORMULÁRIOS
-       ----------------------------------------------------- */
-
-    .form-group {
-        width: 100%;
-    }
-
 
     input,
     select,
     textarea {
         width: 100%;
         max-width: 100%;
-
         box-sizing: border-box;
     }
-
-
-    /* -----------------------------------------------------
-       DETALHES
-       ----------------------------------------------------- */
-
-    .detalhes-card {
-        width: 100%;
-        max-width: 100%;
-
-        box-sizing: border-box;
-    }
-
-
-    /* -----------------------------------------------------
-       TABELAS
-       ----------------------------------------------------- */
 
     .table-container {
         width: 100%;
         max-width: 100%;
-
         overflow-x: auto;
-
         -webkit-overflow-scrolling: touch;
     }
-
 
     table {
         min-width: 700px;
     }
-
-
-    /* -----------------------------------------------------
-       CABEÇALHO
-       ----------------------------------------------------- */
-
-    .page-header {
-        width: 100%;
-
-        box-sizing: border-box;
-    }
-
 }
 
 
 /* =========================================================
-   TABLET PEQUENO / MOBILE
-   Até 850px
+   MOBILE
    ========================================================= */
 
 @media screen and (max-width: 850px) {
-
-    /*
-     * A partir daqui a sidebar deixa de ocupar espaço
-     * permanente na tela.
-     */
-
-    /* -----------------------------------------------------
-       SIDEBAR
-       ----------------------------------------------------- */
-
-    .sidebar {
-        width: 280px;
-
-        height: 100vh;
-
-        transform: translateX(-100%);
-
-        transition:
-            transform 0.3s ease;
-
-        box-shadow:
-            5px 0 30px rgba(0, 0, 0, 0.5);
-    }
-
-
-    .sidebar.sidebar-aberta {
-        transform: translateX(0);
-    }
-
-
-    /* -----------------------------------------------------
-       BOTÃO FECHAR
-       ----------------------------------------------------- */
-
-    .sidebar .sidebar-close {
-        display: flex;
-    }
-
-
-    /* -----------------------------------------------------
-       CONTEÚDO PRINCIPAL
-       ----------------------------------------------------- */
-
-    .main-content {
-        width: 100%;
-
-        margin-left: 0;
-    }
-
-
-    /* -----------------------------------------------------
-       BOTÃO MENU
-       ----------------------------------------------------- */
-
-    .menu-mobile {
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        position: fixed;
-
-        top: 18px;
-        left: 18px;
-
-        width: 45px;
-        height: 45px;
-
-        padding: 0;
-
-        border:
-            1px solid var(--cor-roxo);
-
-        border-radius:
-            var(--raio-medio);
-
-        background:
-            var(--cor-fundo-secundario);
-
-        color:
-            var(--cor-verde);
-
-        font-size: 22px;
-
-        line-height: 1;
-
-        cursor: pointer;
-
-        z-index: 1100;
-
-        box-shadow:
-            0 0 15px rgba(157, 0, 255, 0.25);
-
-        transition:
-            transform var(--transicao),
-            box-shadow var(--transicao);
-    }
-
-
-    .menu-mobile:hover {
-        transform: scale(1.05);
-
-        box-shadow:
-            0 0 20px rgba(157, 0, 255, 0.45);
-    }
-
-
-    /* -----------------------------------------------------
-       OVERLAY
-       ----------------------------------------------------- */
-
-    .sidebar-overlay {
-        display: none;
-
-        position: fixed;
-
-        inset: 0;
-
-        background:
-            rgba(0, 0, 0, 0.55);
-
-        z-index: 900;
-    }
-
-
-    .sidebar-overlay.ativo {
-        display: block;
-    }
-
-
-    /* -----------------------------------------------------
-       HOME
-       ----------------------------------------------------- */
-
-    .home {
-        width: 100%;
-        max-width: 100%;
-
-        padding:
-            80px 25px 40px;
-
-        box-sizing: border-box;
-    }
-
-
-    /* -----------------------------------------------------
-       FATURAMENTO
-       ----------------------------------------------------- */
-
-    .faturamento {
-        width: 100%;
-        max-width: 100%;
-
-        padding:
-            80px 25px 40px;
-
-        box-sizing: border-box;
-    }
-
-
-    /* -----------------------------------------------------
-       CABEÇALHOS
-       ----------------------------------------------------- */
-
-    .page-header {
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 15px;
-    }
-
-
-    .page-header .btn {
-        width: 100%;
-    }
-
-
-    /* -----------------------------------------------------
-       CARDS
-       ----------------------------------------------------- */
-
-    .card {
-        width: 100%;
-        max-width: 100%;
-
-        padding: 25px;
-
-        box-sizing: border-box;
-    }
-
-
-    /* -----------------------------------------------------
-       FORMULÁRIOS
-       ----------------------------------------------------- */
-
-    .form-group {
-        width: 100%;
-    }
-
-
-    input,
-    select,
-    textarea {
-        display: block;
-
-        width: 100%;
-        max-width: 100%;
-
-        box-sizing: border-box;
-    }
-
-
-    /* -----------------------------------------------------
-       BOTÕES DO FORMULÁRIO
-       ----------------------------------------------------- */
-
-    .form-actions {
-        width: 100%;
-
-        box-sizing: border-box;
-    }
-
-
-    /* -----------------------------------------------------
-       DETALHES
-       ----------------------------------------------------- */
-
-    .detalhes-card {
-        width: 100%;
-        max-width: 100%;
-
-        padding: 25px;
-
-        box-sizing: border-box;
-    }
-
-
-    .detalhes-item {
-        flex-direction: column;
-
-        gap: 6px;
-    }
-
-
-    /* -----------------------------------------------------
-       RELATÓRIO
-       ----------------------------------------------------- */
-
-    .relatorio-card {
-        width: 100%;
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 20px;
-
-        box-sizing: border-box;
-    }
-
-
-    .relatorio-card .btn {
-        width: 100%;
-    }
-
-
-    /* -----------------------------------------------------
-       TABELAS
-       ----------------------------------------------------- */
-
-    .table-container {
-        width: 100%;
-        max-width: 100%;
-
-        overflow-x: auto;
-
-        -webkit-overflow-scrolling: touch;
-    }
-
-
-    table {
-        min-width: 700px;
-    }
-
-}
-
-
-/* =========================================================
-   CELULAR
-   Até 650px
-   ========================================================= */
-
-@media screen and (max-width: 650px) {
 
     body {
         overflow-x: hidden;
     }
 
-
-    /* -----------------------------------------------------
-       SIDEBAR
-       ----------------------------------------------------- */
-
+    /* Sidebar fechada no celular */
     .sidebar {
         width: 280px;
         max-width: 85vw;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 2000;
     }
 
-
-    /* -----------------------------------------------------
-       CONTEÚDO
-       ----------------------------------------------------- */
-
-    .home {
-        padding:
-            80px 18px 30px;
+    .sidebar.sidebar-aberta {
+        transform: translateX(0);
     }
 
-
-    .faturamento {
-        padding:
-            80px 18px 30px;
+    .sidebar .sidebar-close {
+        display: flex;
     }
 
-
-    /* -----------------------------------------------------
-       CABEÇALHO DA HOME
-       ----------------------------------------------------- */
-
-    .home-header {
-        margin-bottom: 30px;
-    }
-
-
-    .home-header h1 {
-        font-size: 2.5rem;
-
-        line-height: 1.1;
-    }
-
-
-    .home-header p {
-        font-size: 0.95rem;
-
-        line-height: 1.5;
-    }
-
-
-    /* -----------------------------------------------------
-       CARDS DA HOME
-       ----------------------------------------------------- */
-
-    .home .cards-grid {
-        display: grid;
-
-        grid-template-columns: 1fr;
-
-        gap: 16px;
-
-        width: 100%;
-    }
-
-
-    .home .stat-card {
-        width: 100%;
-
-        min-width: 0;
-
-        min-height: 150px;
-
-        padding: 22px;
-
+    /* Conteúdo ocupa a tela inteira */
+    .main-content {
+        width: 100% !important;
+        max-width: 100%;
+        margin-left: 0 !important;
         box-sizing: border-box;
     }
 
+    /* Botão para abrir o menu */
+    .menu-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    .home .stat-card h3 {
-        font-size: 1rem;
+        position: fixed;
+        top: 18px;
+        left: 18px;
 
-        margin-bottom: 15px;
+        width: 45px;
+        height: 45px;
+        padding: 0;
+
+        border: 1px solid var(--cor-roxo);
+        border-radius: var(--raio-medio);
+
+        background: var(--cor-fundo-secundario);
+        color: var(--cor-verde);
+
+        font-size: 22px;
+        line-height: 1;
+
+        cursor: pointer;
+        z-index: 1500;
+
+        box-shadow:
+            0 0 15px rgba(157, 0, 255, 0.25);
     }
 
-
-    .home .stat-card .numero {
-        font-size: 2.5rem;
+    .menu-mobile:hover {
+        transform: scale(1.05);
     }
 
+    /* Fundo escuro atrás da sidebar */
+    .sidebar-overlay {
+        display: none;
 
-    /* -----------------------------------------------------
-       FORMULÁRIOS
-       ----------------------------------------------------- */
+        position: fixed;
+        inset: 0;
 
-    .card {
-        padding: 20px;
+        background: rgba(0, 0, 0, 0.55);
+
+        z-index: 1900;
     }
 
+    .sidebar-overlay.ativo {
+        display: block;
+    }
+
+    /* Espaço superior para não ficar atrás do botão ☰ */
+    .home,
+    .page-container,
+    .faturamento,
+    .dashboard {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+
+    /* Cabeçalhos */
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .page-header .btn {
+        width: 100%;
+    }
+
+    /* Formulários */
+    .card,
+    .detalhes-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    input,
+    select,
+    textarea {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
 
     .form-actions {
-        flex-direction: column;
-
         width: 100%;
+        box-sizing: border-box;
     }
 
-
-    .form-actions .btn {
-        width: 100%;
-    }
-
-
-    /* -----------------------------------------------------
-       DETALHES
-       ----------------------------------------------------- */
-
-    .detalhes-card {
-        padding: 20px;
-    }
-
-
+    /* Detalhes */
     .detalhes-item {
-        padding: 13px 0;
+        flex-direction: column;
+        gap: 6px;
     }
 
-
-    /* -----------------------------------------------------
-       RELATÓRIOS
-       ----------------------------------------------------- */
-
-    .relatorios {
-        width: 100%;
-
-        margin-top: 35px;
-    }
-
-
-    .relatorios h2 {
-        font-size: 1.6rem;
-    }
-
-
-    .relatorio-card {
-        width: 100%;
-
-        padding: 22px;
-    }
-
-
-    .relatorio-card h3 {
-        font-size: 1.1rem;
-    }
-
-
-    .relatorio-card p {
-        line-height: 1.6;
-    }
-
-
-    /* -----------------------------------------------------
-       TABELAS
-       ----------------------------------------------------- */
-
+    /* Tabelas */
     .table-container {
         width: 100%;
-
+        max-width: 100%;
         overflow-x: auto;
-
         -webkit-overflow-scrolling: touch;
     }
-
 
     table {
         min-width: 700px;
     }
 
+    /* Relatórios */
+    .relatorio-card {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        box-sizing: border-box;
+    }
+
+    .relatorio-card .btn {
+        width: 100%;
+    }
+
+    /* Dashboard */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 
 /* =========================================================
-   CELULARES MUITO PEQUENOS
-   Até 400px
+   CELULAR
+   ========================================================= */
+
+@media screen and (max-width: 650px) {
+
+    .home,
+    .page-container,
+    .faturamento,
+    .dashboard {
+        padding: 80px 18px 30px;
+    }
+
+    /* Home antiga / compatibilidade */
+    .home-header h1 {
+        font-size: 2.5rem;
+        line-height: 1.1;
+    }
+
+    .home-header p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .home .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .home .stat-card {
+        width: 100%;
+        min-width: 0;
+        min-height: 150px;
+        padding: 22px;
+        box-sizing: border-box;
+    }
+
+    .home .stat-card .numero {
+        font-size: 2.5rem;
+    }
+
+    /* Novo dashboard */
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-grid,
+    .management-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.7rem;
+    }
+
+    .dashboard-status {
+        align-self: flex-start;
+    }
+
+    .finance-card {
+        align-items: flex-start;
+    }
+
+    /* Formulários */
+    .card {
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    /* Detalhes */
+    .detalhes-card {
+        padding: 20px;
+    }
+
+    .detalhes-item {
+        padding: 13px 0;
+    }
+
+    /* Relatórios */
+    .relatorios {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .relatorios h2 {
+        font-size: 1.6rem;
+    }
+
+    .relatorio-card {
+        padding: 20px;
+    }
+
+    /* Tabelas continuam com rolagem horizontal */
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 700px;
+    }
+}
+
+
+/* =========================================================
+   CELULAR PEQUENO
    ========================================================= */
 
 @media screen and (max-width: 400px) {
-
-    /* -----------------------------------------------------
-       SIDEBAR
-       ----------------------------------------------------- */
 
     .sidebar {
         width: 280px;
         max-width: 88vw;
     }
 
-
-    /* -----------------------------------------------------
-       CONTEÚDO
-       ----------------------------------------------------- */
-
-    .home {
-        padding:
-            75px 14px 25px;
+    .home,
+    .page-container,
+    .faturamento,
+    .dashboard {
+        padding: 75px 14px 25px;
     }
-
-
-    .faturamento {
-        padding:
-            75px 14px 25px;
-    }
-
-
-    /* -----------------------------------------------------
-       HOME
-       ----------------------------------------------------- */
 
     .home-header h1 {
         font-size: 2.2rem;
     }
 
-
-    .home-header p {
-        font-size: 0.9rem;
-    }
-
-
     .home .stat-card {
         min-height: 135px;
-
         padding: 20px;
     }
-
 
     .home .stat-card .numero {
         font-size: 2.3rem;
     }
 
-
-    /* -----------------------------------------------------
-       CARDS
-       ----------------------------------------------------- */
-
-    .card {
-        padding: 18px;
+    .dashboard-header h1 {
+        font-size: 1.5rem;
     }
 
+    .dashboard-panel {
+        padding: 17px;
+    }
 
+    .dashboard-stat {
+        padding: 17px;
+    }
+
+    .card,
     .detalhes-card {
         padding: 18px;
     }
 
-
-    .relatorio-card {
-        padding: 20px;
-    }
-
-
-    /* -----------------------------------------------------
-       BOTÃO MENU
-       ----------------------------------------------------- */
-
     .menu-mobile {
         top: 14px;
         left: 14px;
-
         width: 42px;
         height: 42px;
     }
-
 }

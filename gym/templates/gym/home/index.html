@@ -1,96 +1,437 @@
 {% extends "gym/base.html" %}
 
 {% block title %}
-    PowerOn
+    PowerOn - Dashboard
 {% endblock %}
 
 {% block content %}
 
-<div class="home">
+<div class="dashboard">
 
-    <header class="home-header">
-        <h1>PowerOn</h1>
+    <!-- =====================================================
+         CABEÇALHO
+         ===================================================== -->
 
-        <p>
-            Bem-vinda ao sistema de gestão da academia.
-        </p>
+    <header class="dashboard-header">
+
+        <div>
+
+            <span class="dashboard-eyebrow">
+                SISTEMA DE GESTÃO
+            </span>
+
+            <h1>
+                Bem-vinda, Maria Luiza!
+            </h1>
+
+            <p>
+                Aqui está um resumo do seu sistema.
+            </p>
+
+        </div>
+
+        <div class="dashboard-status">
+            <span class="status-dot"></span>
+            Sistema online
+        </div>
+
     </header>
 
 
-    <!-- ESTATÍSTICAS -->
+    <!-- =====================================================
+         CARDS DE RESUMO
+         ===================================================== -->
 
-    <section class="cards-grid">
+    <section class="dashboard-stats">
 
-        <div class="stat-card">
+        <!-- ALUNOS -->
 
-            <h3>Alunos</h3>
+        <a
+            href="{% url 'gym:alunos_lista' %}"
+            class="dashboard-stat"
+        >
 
-            <span class="numero">
-                {{ total_alunos }}
+            <div class="dashboard-stat-icon purple">
+                👤
+            </div>
+
+            <div class="dashboard-stat-content">
+
+                <span class="dashboard-stat-label">
+                    Alunos
+                </span>
+
+                <strong>
+                    {{ total_alunos }}
+                </strong>
+
+                <small>
+                    alunos cadastrados
+                </small>
+
+            </div>
+
+            <span class="dashboard-stat-arrow">
+                →
             </span>
+
+        </a>
+
+
+        <!-- PROFESSORES -->
+
+        <a
+            href="{% url 'gym:professores_lista' %}"
+            class="dashboard-stat"
+        >
+
+            <div class="dashboard-stat-icon blue">
+                👨‍🏫
+            </div>
+
+            <div class="dashboard-stat-content">
+
+                <span class="dashboard-stat-label">
+                    Professores
+                </span>
+
+                <strong>
+                    {{ total_professores }}
+                </strong>
+
+                <small>
+                    professores cadastrados
+                </small>
+
+            </div>
+
+            <span class="dashboard-stat-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <!-- MODALIDADES -->
+
+        <a
+            href="{% url 'gym:modalidades_lista' %}"
+            class="dashboard-stat"
+        >
+
+            <div class="dashboard-stat-icon orange">
+                🏋️
+            </div>
+
+            <div class="dashboard-stat-content">
+
+                <span class="dashboard-stat-label">
+                    Modalidades
+                </span>
+
+                <strong>
+                    {{ total_modalidades }}
+                </strong>
+
+                <small>
+                    modalidades cadastradas
+                </small>
+
+            </div>
+
+            <span class="dashboard-stat-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <!-- MATRÍCULAS -->
+
+        <a
+            href="{% url 'gym:matriculas_lista' %}"
+            class="dashboard-stat"
+        >
+
+            <div class="dashboard-stat-icon green">
+                📋
+            </div>
+
+            <div class="dashboard-stat-content">
+
+                <span class="dashboard-stat-label">
+                    Matrículas
+                </span>
+
+                <strong>
+                    {{ total_matriculas }}
+                </strong>
+
+                <small>
+                    matrículas registradas
+                </small>
+
+            </div>
+
+            <span class="dashboard-stat-arrow">
+                →
+            </span>
+
+        </a>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL DO DASHBOARD
+         ===================================================== -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- =================================================
+             FATURAMENTO
+             ================================================= -->
+
+        <div class="dashboard-panel">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        RESUMO FINANCEIRO
+                    </span>
+
+                    <h2>
+                        Faturamento
+                    </h2>
+
+                </div>
+
+                <a
+                    href="{% url 'gym:faturamento' %}"
+                    class="panel-link"
+                >
+                    Ver relatório →
+                </a>
+
+            </div>
+
+
+            <div class="finance-card">
+
+                <div class="finance-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <span>
+                        Relatório de faturamento
+                    </span>
+
+                    <strong>
+                        Consulte os valores
+                    </strong>
+
+                    <p>
+                        Veja o faturamento calculado
+                        para cada modalidade da academia.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
 
-        <div class="stat-card">
+        <!-- =================================================
+             AÇÕES RÁPIDAS
+             ================================================= -->
 
-            <h3>Professores</h3>
+        <div class="dashboard-panel">
 
-            <span class="numero">
-                {{ total_professores }}
-            </span>
+            <div class="dashboard-panel-header">
 
-        </div>
+                <div>
+
+                    <span class="panel-label">
+                        ATALHOS
+                    </span>
+
+                    <h2>
+                        Ações rápidas
+                    </h2>
+
+                </div>
+
+            </div>
 
 
-        <div class="stat-card">
+            <div class="quick-grid">
 
-            <h3>Modalidades</h3>
+                <a
+                    href="{% url 'gym:alunos_cadastrar' %}"
+                    class="quick-item"
+                >
 
-            <span class="numero">
-                {{ total_modalidades }}
-            </span>
+                    <span class="quick-icon purple">
+                        👤
+                    </span>
 
-        </div>
+                    <span>
+                        Cadastrar aluno
+                    </span>
+
+                    <strong>+</strong>
+
+                </a>
 
 
-        <div class="stat-card">
+                <a
+                    href="{% url 'gym:professores_cadastrar' %}"
+                    class="quick-item"
+                >
 
-            <h3>Matrículas</h3>
+                    <span class="quick-icon blue">
+                        👨‍🏫
+                    </span>
 
-            <span class="numero">
-                {{ total_matriculas }}
-            </span>
+                    <span>
+                        Cadastrar professor
+                    </span>
+
+                    <strong>+</strong>
+
+                </a>
+
+
+                <a
+                    href="{% url 'gym:modalidades_cadastrar' %}"
+                    class="quick-item"
+                >
+
+                    <span class="quick-icon orange">
+                        🏋️
+                    </span>
+
+                    <span>
+                        Cadastrar modalidade
+                    </span>
+
+                    <strong>+</strong>
+
+                </a>
+
+
+                <a
+                    href="{% url 'gym:matriculas_cadastrar' %}"
+                    class="quick-item"
+                >
+
+                    <span class="quick-icon green">
+                        📋
+                    </span>
+
+                    <span>
+                        Nova matrícula
+                    </span>
+
+                    <strong>+</strong>
+
+                </a>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- RELATÓRIOS -->
+    <!-- =====================================================
+         ACESSOS DO SISTEMA
+         ===================================================== -->
 
-    <section class="relatorios">
+    <section class="dashboard-panel dashboard-navigation">
 
-        <h2>Relatórios</h2>
-
-        <div class="relatorio-card">
+        <div class="dashboard-panel-header">
 
             <div>
 
-                <h3>Faturamento</h3>
+                <span class="panel-label">
+                    NAVEGAÇÃO
+                </span>
 
-                <p>
-                    Consulte o faturamento das modalidades
-                    cadastradas na academia.
-                </p>
+                <h2>
+                    Gerenciamento
+                </h2>
 
             </div>
 
+        </div>
+
+
+        <div class="management-grid">
+
             <a
-                href="{% url 'gym:faturamento' %}"
-                class="btn btn-verde"
+                href="{% url 'gym:alunos_lista' %}"
+                class="management-item"
             >
-                Ver relatório
+                <span>👤</span>
+
+                <div>
+                    <strong>Alunos</strong>
+                    <small>Gerenciar alunos</small>
+                </div>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                href="{% url 'gym:professores_lista' %}"
+                class="management-item"
+            >
+                <span>👨‍🏫</span>
+
+                <div>
+                    <strong>Professores</strong>
+                    <small>Gerenciar professores</small>
+                </div>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                href="{% url 'gym:modalidades_lista' %}"
+                class="management-item"
+            >
+                <span>🏋️</span>
+
+                <div>
+                    <strong>Modalidades</strong>
+                    <small>Gerenciar modalidades</small>
+                </div>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                href="{% url 'gym:matriculas_lista' %}"
+                class="management-item"
+            >
+                <span>📋</span>
+
+                <div>
+                    <strong>Matrículas</strong>
+                    <small>Gerenciar matrículas</small>
+                </div>
+
+                <b>→</b>
             </a>
 
         </div>
