@@ -1,8 +1,16 @@
 class AlunoService:
 
-    def __init__(self, arquivo_alunos, indice_alunos):
+    def __init__(
+        self,
+        arquivo_alunos,
+        indice_alunos,
+        arquivo_matriculas,
+        indice_matriculas
+    ):
         self.arquivo_alunos = arquivo_alunos
         self.indice_alunos = indice_alunos
+        self.arquivo_matriculas = arquivo_matriculas
+        self.indice_matriculas = indice_matriculas
 
     # =========================================================
     # CADASTRAR
@@ -11,11 +19,9 @@ class AlunoService:
     def cadastrar(self, aluno):
         """
         Cadastra um novo aluno.
-
         O código não pode existir no índice.
         """
 
-        # Verifica se o código já existe
         existente = self.indice_alunos.buscar(
             aluno.codigo
         )
@@ -26,12 +32,10 @@ class AlunoService:
                 f"{aluno.codigo} já existe."
             )
 
-        # Grava no arquivo
         posicao = self.arquivo_alunos.inserir(
             aluno
         )
 
-        # Insere no índice
         inserido = self.indice_alunos.inserir(
             aluno.codigo,
             posicao
@@ -79,7 +83,6 @@ class AlunoService:
         indices = self.indice_alunos.listar()
 
         for codigo, posicao in indices:
-
             aluno = self.arquivo_alunos.buscar(
                 posicao
             )
@@ -106,7 +109,6 @@ class AlunoService:
         if no is None:
             return False
 
-        # O código não deve mudar durante a atualização
         if aluno.codigo != codigo:
             raise ValueError(
                 "O código do aluno não pode "
@@ -124,8 +126,8 @@ class AlunoService:
 
     def remover(self, codigo):
         """
-        Realiza a remoção lógica do aluno no arquivo
-        e remove sua chave da árvore.
+        Remove um aluno somente se ele não possuir
+        matrícula ativa.
         """
 
         no = self.indice_alunos.buscar(
@@ -135,9 +137,24 @@ class AlunoService:
         if no is None:
             return False
 
+        # Verifica se o aluno possui matrícula ativa.
+        for codigo_matr, posicao in self.indice_matriculas.listar():
+            matricula = self.arquivo_matriculas.buscar(
+                posicao
+            )
+
+            if matricula is None:
+                continue
+
+            if matricula.cod_aluno == codigo:
+                raise ValueError(
+                    "Não é possível excluir o aluno "
+                    "porque ele possui uma matrícula ativa."
+                )
+
         posicao = no.posicao
 
-        # Primeiro remove logicamente do arquivo
+        # Remove logicamente do arquivo.
         removido = self.arquivo_alunos.remover(
             posicao
         )
@@ -145,7 +162,7 @@ class AlunoService:
         if not removido:
             return False
 
-        # Depois remove do índice
+        # Remove da árvore.
         removido_indice = self.indice_alunos.remover(
             codigo
         )

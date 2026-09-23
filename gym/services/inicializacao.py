@@ -41,7 +41,9 @@ indice_matriculas = IndiceMatriculas(arquivo_matriculas)
 
 aluno_service = AlunoService(
     arquivo_alunos,
-    indice_alunos
+    indice_alunos,
+    arquivo_matriculas,
+    indice_matriculas
 )
 
 professor_service = ProfessorService(
