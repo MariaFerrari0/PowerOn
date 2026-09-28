@@ -3,20 +3,32 @@ from datetime import datetime
 from django.shortcuts import render, redirect
 
 from ..modelos.aluno import Aluno
+
 from ..services.inicializacao import aluno_service
+
 from ..utils.imc import calcular_imc, diagnosticar_imc
 
 
 def lista(request):
+
     alunos = aluno_service.listar()
 
     for aluno in alunos:
+
         try:
+
             data = datetime.strptime(
                 aluno.data_nascimento,
                 "%Y-%m-%d"
             )
+
+            if data > datetime.now():
+                raise ValueError(
+                    "A data de nascimento não pode ser futura."
+                )
+
             aluno.data_nascimento = data.strftime("%d/%m/%Y")
+
         except ValueError:
             pass
 
@@ -32,30 +44,61 @@ def lista(request):
 
 
 def cadastrar(request):
+
     erro = None
 
     if request.method == "POST":
+
         try:
+
             codigo = int(request.POST.get("codigo"))
-            nome = request.POST.get("nome", "").strip()
+
+            nome = request.POST.get(
+                "nome",
+                ""
+            ).strip()
+
             data_nascimento = request.POST.get(
                 "data_nascimento",
                 ""
             ).strip()
+
             peso = float(request.POST.get("peso"))
+
             altura = float(request.POST.get("altura"))
 
             if not nome:
+
                 raise ValueError(
                     "O nome do aluno é obrigatório."
                 )
 
+            if any(char.isdigit() for char in nome):
+
+                raise ValueError(
+                    "Nome Invalido."
+                )
+
+            # Validação da data de nascimento
+            data = datetime.strptime(
+                data_nascimento,
+                "%Y-%m-%d"
+            )
+
+            if data > datetime.now():
+
+                raise ValueError(
+                    "A data de nascimento não pode ser futura."
+                )
+
             if peso <= 0:
+
                 raise ValueError(
                     "O peso deve ser maior que zero."
                 )
 
             if altura <= 0:
+
                 raise ValueError(
                     "A altura deve ser maior que zero."
                 )
@@ -73,6 +116,7 @@ def cadastrar(request):
             return redirect("gym:alunos_lista")
 
         except (ValueError, TypeError) as e:
+
             erro = str(e)
 
     return render(
@@ -83,9 +127,11 @@ def cadastrar(request):
 
 
 def detalhes(request, codigo):
+
     aluno = aluno_service.buscar(codigo)
 
     if aluno is None:
+
         return redirect("gym:alunos_lista")
 
     imc = calcular_imc(
@@ -96,12 +142,18 @@ def detalhes(request, codigo):
     diagnostico = diagnosticar_imc(imc)
 
     try:
+
         data = datetime.strptime(
             aluno.data_nascimento,
             "%Y-%m-%d"
         )
-        data_nascimento = data.strftime("%d/%m/%Y")
+
+        data_nascimento = data.strftime(
+            "%d/%m/%Y"
+        )
+
     except ValueError:
+
         data_nascimento = aluno.data_nascimento
 
     contexto = {
@@ -119,34 +171,59 @@ def detalhes(request, codigo):
 
 
 def editar(request, codigo):
+
     aluno = aluno_service.buscar(codigo)
 
     if aluno is None:
+
         return redirect("gym:alunos_lista")
 
     erro = None
 
     if request.method == "POST":
+
         try:
-            nome = request.POST.get("nome", "").strip()
+
+            nome = request.POST.get(
+                "nome",
+                ""
+            ).strip()
+
             data_nascimento = request.POST.get(
                 "data_nascimento",
                 ""
             ).strip()
+
+            # Validação da data de nascimento
+            data = datetime.strptime(
+                data_nascimento,
+                "%Y-%m-%d"
+            )
+
+            if data > datetime.now():
+
+                raise ValueError(
+                    "A data de nascimento não pode ser futura."
+                )
+
             peso = float(request.POST.get("peso"))
+
             altura = float(request.POST.get("altura"))
 
             if not nome:
+
                 raise ValueError(
                     "O nome do aluno é obrigatório."
                 )
 
             if peso <= 0:
+
                 raise ValueError(
                     "O peso deve ser maior que zero."
                 )
 
             if altura <= 0:
+
                 raise ValueError(
                     "A altura deve ser maior que zero."
                 )
@@ -170,6 +247,7 @@ def editar(request, codigo):
             )
 
         except (ValueError, TypeError) as e:
+
             erro = str(e)
 
     contexto = {
@@ -185,17 +263,25 @@ def editar(request, codigo):
 
 
 def excluir(request, codigo):
+
     aluno = aluno_service.buscar(codigo)
 
     if aluno is None:
+
         return redirect("gym:alunos_lista")
 
     if request.method == "POST":
+
         try:
+
             aluno_service.remover(codigo)
+
             return redirect("gym:alunos_lista")
+
         except ValueError as e:
+
             erro = str(e)
+
             return render(
                 request,
                 "gym/alunos/confirmar_exclusao.html",
