@@ -45,6 +45,7 @@ def cadastrar(request):
                 "descricao",
                 ""
             ).strip()
+            
 
             cod_prof = int(
                 request.POST.get("cod_prof")
@@ -62,6 +63,11 @@ def cadastrar(request):
                 raise ValueError(
                     "A descrição da modalidade é obrigatória."
                 )
+            if any(char.isdigit() for char in descricao):
+                 raise ValueError(" Descrição somente caractere.")
+            
+            if descricao == descricao:
+                raise ValueError("Descricao ja cadastrada.")
 
             if valor_aula <= 0:
                 raise ValueError(
