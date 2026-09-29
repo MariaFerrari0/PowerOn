@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from ..services.inicializacao import (
     aluno_service,
     professor_service,

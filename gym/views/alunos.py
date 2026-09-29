@@ -54,10 +54,7 @@ def cadastrar(request):
                 ""
             ).strip()
 
-            data_nascimento = request.POST.get(
-                "data_nascimento",
-                ""
-            ).strip()
+            data_nascimento = request.POST.get( "data_nascimento", "" ).strip()
 
             peso = float(request.POST.get("peso"))
 
@@ -65,39 +62,26 @@ def cadastrar(request):
 
             if not nome:
 
-                raise ValueError(
-                    "O nome do aluno é obrigatório."
-                )
+                raise ValueError( "O nome do aluno é obrigatório." )
 
             if any(char.isdigit() for char in nome):
 
-                raise ValueError(
-                    "Nome Invalido."
-                )
+                raise ValueError( "Nome Invalido.")
 
             # Validação da data de nascimento
-            data = datetime.strptime(
-                data_nascimento,
-                "%Y-%m-%d"
-            )
+            data = datetime.strptime( data_nascimento,"%Y-%m-%d" )
 
             if data > datetime.now():
 
-                raise ValueError(
-                    "A data de nascimento não pode ser futura."
-                )
+                raise ValueError("A data de nascimento não pode ser futura.")
 
             if peso <= 0:
 
-                raise ValueError(
-                    "O peso deve ser maior que zero."
-                )
+                raise ValueError( "O peso deve ser maior que zero." )
 
             if altura <= 0:
 
-                raise ValueError(
-                    "A altura deve ser maior que zero."
-                )
+                raise ValueError("A altura deve ser maior que zero.")
 
             aluno = Aluno(
                 codigo=codigo,
@@ -139,14 +123,9 @@ def detalhes(request, codigo):
 
     try:
 
-        data = datetime.strptime(
-            aluno.data_nascimento,
-            "%Y-%m-%d"
-        )
+        data = datetime.strptime( aluno.data_nascimento,"%Y-%m-%d" )
 
-        data_nascimento = data.strftime(
-            "%d/%m/%Y"
-        )
+        data_nascimento = data.strftime( "%d/%m/%Y")
 
     except ValueError:
 
@@ -180,27 +159,16 @@ def editar(request, codigo):
 
         try:
 
-            nome = request.POST.get(
-                "nome",
-                ""
-            ).strip()
+            nome = request.POST.get( "nome","").strip()
 
-            data_nascimento = request.POST.get(
-                "data_nascimento",
-                ""
-            ).strip()
+            data_nascimento = request.POST.get( "data_nascimento", "" ).strip()
 
             # Validação da data de nascimento
-            data = datetime.strptime(
-                data_nascimento,
-                "%Y-%m-%d"
-            )
+            data = datetime.strptime( data_nascimento, "%Y-%m-%d")
 
             if data > datetime.now():
 
-                raise ValueError(
-                    "A data de nascimento não pode ser futura."
-                )
+                raise ValueError("A data de nascimento não pode ser futura.")
 
             peso = float(request.POST.get("peso"))
 
@@ -208,21 +176,15 @@ def editar(request, codigo):
 
             if not nome:
 
-                raise ValueError(
-                    "O nome do aluno é obrigatório."
-                )
+                raise ValueError("O nome do aluno é obrigatório.")
 
             if peso <= 0:
 
-                raise ValueError(
-                    "O peso deve ser maior que zero."
-                )
+                raise ValueError("O peso deve ser maior que zero.")
 
             if altura <= 0:
 
-                raise ValueError(
-                    "A altura deve ser maior que zero."
-                )
+                raise ValueError("A altura deve ser maior que zero.")
 
             aluno_atualizado = Aluno(
                 codigo=codigo,
