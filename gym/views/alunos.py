@@ -1,11 +1,7 @@
 from datetime import datetime
-
 from django.shortcuts import render, redirect
-
 from ..modelos.aluno import Aluno
-
 from ..services.inicializacao import aluno_service
-
 from ..utils.imc import calcular_imc, diagnosticar_imc
 
 
