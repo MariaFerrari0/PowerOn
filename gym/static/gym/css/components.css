@@ -1,24 +1,9 @@
-/* =========================================================
-   POWERON - COMPONENTS
-   Botões, cards, tabelas, formulários e componentes
-   ========================================================= */
-
-
-/* =========================================================
-   CONTAINER
-   ========================================================= */
-
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 30px;
 }
-
-
-/* =========================================================
-   BOTÕES
-   ========================================================= */
 
 .btn {
     display: inline-flex;
@@ -43,7 +28,6 @@
         box-shadow var(--transicao);
 }
 
-
 .btn:hover {
     color: #ffffff;
     transform: translateY(-2px);
@@ -51,13 +35,11 @@
         0 0 20px rgba(157, 0, 255, 0.45);
 }
 
-
 .btn-verde {
     border-color: var(--cor-verde);
     background: transparent;
     color: var(--cor-verde);
 }
-
 
 .btn-verde:hover {
     color: var(--cor-verde);
@@ -65,24 +47,17 @@
         0 0 18px rgba(0, 255, 136, 0.35);
 }
 
-
 .btn-perigo {
     border-color: var(--cor-erro);
     background: transparent;
     color: var(--cor-erro);
 }
 
-
 .btn-perigo:hover {
     color: var(--cor-erro);
     box-shadow:
         0 0 18px rgba(255, 59, 107, 0.35);
 }
-
-
-/* =========================================================
-   CARDS
-   ========================================================= */
 
 .card {
     padding: 25px;
@@ -97,7 +72,6 @@
         box-shadow var(--transicao);
 }
 
-
 .card:hover {
     transform: translateY(-4px);
     border-color: var(--cor-roxo);
@@ -105,21 +79,14 @@
         var(--sombra-roxa);
 }
 
-
 .card h2,
 .card h3 {
     margin-bottom: 10px;
 }
 
-
 .card p {
     color: var(--cor-texto-secundario);
 }
-
-
-/* =========================================================
-   GRID DE CARDS
-   ========================================================= */
 
 .cards-grid {
     display: grid;
@@ -129,11 +96,6 @@
     margin: 30px 0;
 }
 
-
-/* =========================================================
-   FORMULÁRIOS
-   ========================================================= */
-
 .form-group {
     display: flex;
     flex-direction: column;
@@ -141,12 +103,10 @@
     margin-bottom: 18px;
 }
 
-
 .form-group label {
     color: var(--cor-texto);
     font-weight: 600;
 }
-
 
 .form-actions {
     display: flex;
@@ -155,11 +115,6 @@
     margin-top: 25px;
 }
 
-
-/* =========================================================
-   TABELAS
-   ========================================================= */
-
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -167,13 +122,11 @@
     border-radius: var(--raio-medio);
 }
 
-
 table {
     width: 100%;
     border-collapse: collapse;
     background: var(--cor-card);
 }
-
 
 thead {
     background:
@@ -184,7 +137,6 @@ thead {
         );
 }
 
-
 th {
     padding: 14px;
     color: var(--cor-texto);
@@ -194,7 +146,6 @@ th {
         1px solid var(--cor-roxo);
 }
 
-
 td {
     padding: 13px;
     color: var(--cor-texto-secundario);
@@ -202,22 +153,15 @@ td {
         1px solid var(--cor-borda);
 }
 
-
 tbody tr {
     transition:
         background var(--transicao);
 }
 
-
 tbody tr:hover {
     background:
         rgba(157, 0, 255, 0.07);
 }
-
-
-/* =========================================================
-   MENSAGENS
-   ========================================================= */
 
 .mensagem {
     padding: 13px 16px;
@@ -228,28 +172,20 @@ tbody tr:hover {
         4px solid var(--cor-roxo);
 }
 
-
 .mensagem-sucesso {
     border-left-color:
         var(--cor-sucesso);
 }
-
 
 .mensagem-erro {
     border-left-color:
         var(--cor-erro);
 }
 
-
 .mensagem-aviso {
     border-left-color:
         var(--cor-aviso);
 }
-
-
-/* =========================================================
-   BADGES
-   ========================================================= */
 
 .badge {
     display: inline-block;
@@ -262,17 +198,11 @@ tbody tr:hover {
     font-weight: 600;
 }
 
-
 .badge-verde {
     background:
         rgba(0, 255, 136, 0.12);
     color: var(--cor-verde);
 }
-
-
-/* =========================================================
-   SIDEBAR
-   ========================================================= */
 
 .sidebar {
     position: fixed;
@@ -291,11 +221,6 @@ tbody tr:hover {
     overflow-y: auto;
 }
 
-
-/* =========================================================
-   CABEÇALHO DA SIDEBAR
-   ========================================================= */
-
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -305,16 +230,10 @@ tbody tr:hover {
     margin-bottom: 35px;
 }
 
-
-/* =========================================================
-   LOGO
-   ========================================================= */
-
 .sidebar-logo {
     margin: 0;
     padding: 0;
 }
-
 
 .sidebar-logo a {
     display: flex;
@@ -323,7 +242,6 @@ tbody tr:hover {
     color: var(--cor-texto);
     text-decoration: none;
 }
-
 
 .logo-icon {
     display: flex;
@@ -346,7 +264,6 @@ tbody tr:hover {
         0 0 18px rgba(157, 0, 255, 0.45);
 }
 
-
 .logo-text {
     font-size: 1.35rem;
     font-weight: 800;
@@ -354,22 +271,12 @@ tbody tr:hover {
     white-space: nowrap;
 }
 
-
-/* =========================================================
-   MENU DA SIDEBAR
-   ========================================================= */
-
 .sidebar-menu {
     display: flex;
     flex-direction: column;
     gap: 8px;
     width: 100%;
 }
-
-
-/* =========================================================
-   ITEM DO MENU
-   ========================================================= */
 
 .menu-item {
     display: flex;
@@ -391,7 +298,6 @@ tbody tr:hover {
         transform var(--transicao);
 }
 
-
 .menu-item:hover {
     color: var(--cor-texto);
     background:
@@ -404,11 +310,6 @@ tbody tr:hover {
         translateX(3px);
 }
 
-
-/* =========================================================
-   ÍCONE DO MENU
-   ========================================================= */
-
 .menu-icon {
     display: flex;
     align-items: center;
@@ -418,11 +319,6 @@ tbody tr:hover {
     text-align: center;
     font-size: 18px;
 }
-
-
-/* =========================================================
-   ITEM ATIVO
-   ========================================================= */
 
 .menu-item.active {
     color: var(--cor-verde);
@@ -434,11 +330,6 @@ tbody tr:hover {
         0 0 18px rgba(0, 255, 136, 0.08);
 }
 
-
-/* =========================================================
-   ITENS DE CADASTRO
-   ========================================================= */
-
 .menu-subitem {
     margin-left: 15px;
     width: calc(100% - 15px);
@@ -449,16 +340,10 @@ tbody tr:hover {
     white-space: nowrap;
 }
 
-
 .menu-subitem .menu-icon {
     color: var(--cor-verde);
     font-size: 16px;
 }
-
-
-/* =========================================================
-   BOTÃO FECHAR DA SIDEBAR
-   ========================================================= */
 
 .sidebar .sidebar-close {
     display: none;
@@ -489,7 +374,6 @@ tbody tr:hover {
     transform: none !important;
 }
 
-
 .sidebar .sidebar-close:hover {
     color:
         var(--cor-verde) !important;
@@ -501,21 +385,11 @@ tbody tr:hover {
         0 0 12px rgba(0, 255, 136, 0.20) !important;
 }
 
-
-/* =========================================================
-   CONTEÚDO PRINCIPAL
-   ========================================================= */
-
 .main-content {
     min-height: 100vh;
     width: calc(100% - 280px);
     margin-left: 280px;
 }
-
-
-/* =========================================================
-   MENU MOBILE
-   ========================================================= */
 
 .menu-mobile {
     display: none;
@@ -542,17 +416,11 @@ tbody tr:hover {
         box-shadow var(--transicao);
 }
 
-
 .menu-mobile:hover {
     transform: scale(1.05);
     box-shadow:
         0 0 20px rgba(157, 0, 255, 0.45);
 }
-
-
-/* =========================================================
-   OVERLAY DO MENU MOBILE
-   ========================================================= */
 
 .sidebar-overlay {
     display: none;
@@ -562,7 +430,6 @@ tbody tr:hover {
         rgba(0, 0, 0, 0.55);
     z-index: 900;
 }
-
 
 .sidebar-overlay.ativo {
     display: block;
