@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-
 from ..modelos.matricula import Matricula
 from ..services.inicializacao import matricula_service
 from ..services.inicializacao import aluno_service
@@ -52,26 +51,16 @@ def cadastrar(request):
 
     if request.method == "POST":
         try:
-            codigo_matr = int(
-                request.POST.get("codigo_matr")
-            )
+            codigo_matr = int(request.POST.get("codigo_matr"))
 
-            cod_aluno = int(
-                request.POST.get("cod_aluno")
-            )
+            cod_aluno = int(request.POST.get("cod_aluno"))
 
-            cod_modalidade = int(
-                request.POST.get("cod_modalidade")
-            )
+            cod_modalidade = int(request.POST.get("cod_modalidade"))
 
-            qtde_aulas = int(
-                request.POST.get("qtde_aulas")
-            )
+            qtde_aulas = int(request.POST.get("qtde_aulas") )
 
             if qtde_aulas <= 0:
-                raise ValueError(
-                    "A quantidade de aulas deve ser maior que zero."
-                )
+                raise ValueError("A quantidade de aulas deve ser maior que zero.")
 
             matricula = Matricula(
                 codigo_matr=codigo_matr,
@@ -80,13 +69,9 @@ def cadastrar(request):
                 qtde_aulas=qtde_aulas,
             )
 
-            matricula_service.cadastrar(
-                matricula
-            )
+            matricula_service.cadastrar( matricula)
 
-            return redirect(
-                "gym:matriculas_lista"
-            )
+            return redirect("gym:matriculas_lista")
 
         except (ValueError, TypeError) as e:
             erro = str(e)
@@ -105,22 +90,14 @@ def cadastrar(request):
 
 
 def detalhes(request, codigo_matr):
-    matricula = matricula_service.buscar(
-        codigo_matr
-    )
+    matricula = matricula_service.buscar(codigo_matr)
 
     if matricula is None:
-        return redirect(
-            "gym:matriculas_lista"
-        )
+        return redirect("gym:matriculas_lista")
 
-    aluno = aluno_service.buscar(
-        matricula.cod_aluno
-    )
+    aluno = aluno_service.buscar( matricula.cod_aluno )
 
-    modalidade = modalidade_service.buscar(
-        matricula.cod_modalidade
-    )
+    modalidade = modalidade_service.buscar( matricula.cod_modalidade)
 
     if aluno is not None:
         matricula.nome_aluno = aluno.nome
@@ -144,22 +121,14 @@ def detalhes(request, codigo_matr):
 
 
 def excluir(request, codigo_matr):
-    matricula = matricula_service.buscar(
-        codigo_matr
-    )
+    matricula = matricula_service.buscar(codigo_matr )
 
     if matricula is None:
-        return redirect(
-            "gym:matriculas_lista"
-        )
+        return redirect("gym:matriculas_lista")
 
-    aluno = aluno_service.buscar(
-        matricula.cod_aluno
-    )
+    aluno = aluno_service.buscar(matricula.cod_aluno)
 
-    modalidade = modalidade_service.buscar(
-        matricula.cod_modalidade
-    )
+    modalidade = modalidade_service.buscar( matricula.cod_modalidade)
 
     if aluno is not None:
         matricula.nome_aluno = aluno.nome
@@ -175,13 +144,9 @@ def excluir(request, codigo_matr):
 
     if request.method == "POST":
         try:
-            matricula_service.remover(
-                codigo_matr
-            )
+            matricula_service.remover(codigo_matr)
 
-            return redirect(
-                "gym:matriculas_lista"
-            )
+            return redirect("gym:matriculas_lista")
 
         except ValueError as e:
             erro = str(e)
@@ -199,14 +164,10 @@ def excluir(request, codigo_matr):
 
 
 def editar(request, codigo_matr):
-    matricula = matricula_service.buscar(
-        codigo_matr
-    )
+    matricula = matricula_service.buscar(codigo_matr )
 
     if matricula is None:
-        return redirect(
-            "gym:matriculas_lista"
-        )
+        return redirect("gym:matriculas_lista")
 
     alunos = aluno_service.listar()
     modalidades = modalidade_service.listar()
@@ -215,22 +176,14 @@ def editar(request, codigo_matr):
 
     if request.method == "POST":
         try:
-            cod_aluno = int(
-                request.POST.get("cod_aluno")
-            )
+            cod_aluno = int(request.POST.get("cod_aluno"))
 
-            cod_modalidade = int(
-                request.POST.get("cod_modalidade")
-            )
+            cod_modalidade = int(request.POST.get("cod_modalidade"))
 
-            qtde_aulas = int(
-                request.POST.get("qtde_aulas")
-            )
+            qtde_aulas = int(request.POST.get("qtde_aulas"))
 
             if qtde_aulas <= 0:
-                raise ValueError(
-                    "A quantidade de aulas deve ser maior que zero."
-                )
+                raise ValueError("A quantidade de aulas deve ser maior que zero.")
 
             matricula_atualizada = Matricula(
                 codigo_matr=codigo_matr,
@@ -252,13 +205,9 @@ def editar(request, codigo_matr):
         except (ValueError, TypeError) as e:
             erro = str(e)
 
-    aluno = aluno_service.buscar(
-        matricula.cod_aluno
-    )
+    aluno = aluno_service.buscar(matricula.cod_aluno)
 
-    modalidade = modalidade_service.buscar(
-        matricula.cod_modalidade
-    )
+    modalidade = modalidade_service.buscar( matricula.cod_modalidade)
 
     if aluno is not None:
         matricula.nome_aluno = aluno.nome

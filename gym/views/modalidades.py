@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-
 from ..modelos.modalidade import Modalidade
 from ..services.inicializacao import modalidade_service
 from ..services.inicializacao import professor_service
@@ -37,14 +36,9 @@ def cadastrar(request):
 
     if request.method == "POST":
         try:
-            codigo_modalidade = int(
-                request.POST.get("codigo_modalidade")
-            )
+            codigo_modalidade = int(request.POST.get("codigo_modalidade") )
 
-            descricao = request.POST.get(
-                "descricao",
-                ""
-            ).strip()
+            descricao = request.POST.get("descricao", "").strip()
             
 
             cod_prof = int(
@@ -57,12 +51,10 @@ def cadastrar(request):
 
             limite_alunos = int(
                 request.POST.get("limite_alunos")
-            )
+                )
 
             if not descricao:
-                raise ValueError(
-                    "A descrição da modalidade é obrigatória."
-                )
+                raise ValueError("A descrição da modalidade é obrigatória.")
             if any(char.isdigit() for char in descricao):
                  raise ValueError(" Descrição somente caractere.")
             
@@ -70,14 +62,10 @@ def cadastrar(request):
                 raise ValueError("Descricao ja cadastrada.")
 
             if valor_aula <= 0:
-                raise ValueError(
-                    "O valor da aula deve ser maior que zero."
-                )
+                raise ValueError("O valor da aula deve ser maior que zero.")
 
             if limite_alunos <= 0:
-                raise ValueError(
-                    "O limite de alunos deve ser maior que zero."
-                )
+                raise ValueError( "O limite de alunos deve ser maior que zero." )
 
             modalidade = Modalidade(
                 codigo_modalidade=codigo_modalidade,
@@ -110,18 +98,12 @@ def cadastrar(request):
 
 
 def detalhes(request, codigo_modalidade):
-    modalidade = modalidade_service.buscar(
-        codigo_modalidade
-    )
+    modalidade = modalidade_service.buscar( codigo_modalidade )
 
     if modalidade is None:
-        return redirect(
-            "gym:modalidades_lista"
-        )
+        return redirect("gym:modalidades_lista" )
 
-    professor = professor_service.buscar(
-        modalidade.cod_prof
-    )
+    professor = professor_service.buscar(modalidade.cod_prof)
 
     if professor is not None:
         modalidade.nome_professor = professor.nome
@@ -129,7 +111,7 @@ def detalhes(request, codigo_modalidade):
         modalidade.nome_professor = "Professor não encontrado"
 
     contexto = {
-        "modalidade": modalidade,
+         "modalidade": modalidade,
     }
 
     return render(
@@ -140,51 +122,32 @@ def detalhes(request, codigo_modalidade):
 
 
 def editar(request, codigo_modalidade):
-    modalidade = modalidade_service.buscar(
-        codigo_modalidade
-    )
+    modalidade = modalidade_service.buscar(codigo_modalidade)
 
     if modalidade is None:
-        return redirect(
-            "gym:modalidades_lista"
-        )
+        return redirect("gym:modalidades_lista" )
 
     professores = professor_service.listar()
     erro = None
 
     if request.method == "POST":
         try:
-            descricao = request.POST.get(
-                "descricao",
-                ""
-            ).strip()
+            descricao = request.POST.get( "descricao","").strip()
 
-            cod_prof = int(
-                request.POST.get("cod_prof")
-            )
+            cod_prof = int(request.POST.get("cod_prof"))
 
-            valor_aula = float(
-                request.POST.get("valor_aula")
-            )
+            valor_aula = float(request.POST.get("valor_aula"))
 
-            limite_alunos = int(
-                request.POST.get("limite_alunos")
-            )
+            limite_alunos = int(request.POST.get("limite_alunos"))
 
             if not descricao:
-                raise ValueError(
-                    "A descrição da modalidade é obrigatória."
-                )
+                raise ValueError("A descrição da modalidade é obrigatória." )
 
             if valor_aula <= 0:
-                raise ValueError(
-                    "O valor da aula deve ser maior que zero."
-                )
+                raise ValueError("O valor da aula deve ser maior que zero.")
 
             if limite_alunos <= 0:
-                raise ValueError(
-                    "O limite de alunos deve ser maior que zero."
-                )
+                raise ValueError("O limite de alunos deve ser maior que zero.")
 
             modalidade_atualizada = Modalidade(
                 codigo_modalidade=codigo_modalidade,
@@ -222,14 +185,10 @@ def editar(request, codigo_modalidade):
 
 
 def excluir(request, codigo_modalidade):
-    modalidade = modalidade_service.buscar(
-        codigo_modalidade
-    )
+    modalidade = modalidade_service.buscar(codigo_modalidade )
 
     if modalidade is None:
-        return redirect(
-            "gym:modalidades_lista"
-        )
+        return redirect("gym:modalidades_lista")
 
     professor = professor_service.buscar(
         modalidade.cod_prof
@@ -242,13 +201,9 @@ def excluir(request, codigo_modalidade):
 
     if request.method == "POST":
         try:
-            modalidade_service.remover(
-                codigo_modalidade
-            )
+            modalidade_service.remover(codigo_modalidade )
 
-            return redirect(
-                "gym:modalidades_lista"
-            )
+            return redirect( "gym:modalidades_lista" )
 
         except ValueError as e:
             erro = str(e)

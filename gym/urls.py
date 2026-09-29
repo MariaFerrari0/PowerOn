@@ -11,7 +11,7 @@ urlpatterns = [
     path("alunos/<int:codigo>/editar/", alunos.editar, name="alunos_editar"),
     path("alunos/<int:codigo>/excluir/", alunos.excluir, name="alunos_excluir"),
 
-      path("professores/", professores.lista, name="professores_lista"),
+    path("professores/", professores.lista, name="professores_lista"),
     path("professores/cadastrar/", professores.cadastrar, name="professores_cadastrar"),
     path("professores/<int:codigo_prof>/", professores.detalhes, name="professores_detalhes"),
     path("professores/<int:codigo_prof>/editar/", professores.editar, name="professores_editar"),
@@ -33,9 +33,6 @@ urlpatterns = [
 
    # RELATÓRIOS
    path("relatorios/faturamento/", faturamento.lista, name="faturamento"),
-
-  
-    
 
 
 ]
