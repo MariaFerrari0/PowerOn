@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-
 from ..modelos.professor import Professor
 from ..services.inicializacao import professor_service
 
 
 def lista(request):
+
     professores = professor_service.listar()
 
     contexto = {
@@ -19,43 +19,37 @@ def lista(request):
 
 
 def cadastrar(request):
+
     erro = None
 
     if request.method == "POST":
+
         try:
-            codigo_prof = int(
-                request.POST.get("codigo_prof")
-            )
 
-            nome = request.POST.get(
-                "nome",
-                ""
-            ).strip()
+            codigo_prof = int( request.POST.get("codigo_prof"))
 
-            endereco = request.POST.get(
-                "endereco",
-                ""
-            ).strip()
+            nome = request.POST.get("nome", "").strip()
 
-            telefone = request.POST.get(
-                "telefone",
-                ""
-            ).strip()
+            endereco = request.POST.get( "endereco","").strip()
+
+            telefone = request.POST.get("telefone","").strip()
+
+            telefone = "".join(char for char in telefone if char.isdigit())
+        
+            if len(telefone) not in (11, 12):
+                raise ValueError("O telefone deve ter 11 números.")
 
             if not nome:
-                raise ValueError(
-                    "O nome do professor é obrigatório."
-                )
+                raise ValueError("O nome do professor é obrigatório.")
+
+            if any(char.isdigit() for char in nome):
+                raise ValueError("Nome Invalido.")
 
             if not endereco:
-                raise ValueError(
-                    "O endereço do professor é obrigatório."
-                )
+                raise ValueError("O endereço do professor é obrigatório." )
 
             if not telefone:
-                raise ValueError(
-                    "O telefone do professor é obrigatório."
-                )
+                raise ValueError("O telefone do professor é obrigatório.")
 
             professor = Professor(
                 codigo_prof=codigo_prof,
@@ -71,6 +65,7 @@ def cadastrar(request):
             )
 
         except (ValueError, TypeError) as e:
+
             erro = str(e)
 
     return render(
@@ -81,12 +76,11 @@ def cadastrar(request):
 
 
 def detalhes(request, codigo_prof):
+
     professor = professor_service.buscar(codigo_prof)
 
     if professor is None:
-        return redirect(
-            "gym:professores_lista"
-        )
+        return redirect("gym:professores_lista")
 
     contexto = {
         "professor": professor,
@@ -100,46 +94,32 @@ def detalhes(request, codigo_prof):
 
 
 def editar(request, codigo_prof):
+
     professor = professor_service.buscar(codigo_prof)
 
     if professor is None:
-        return redirect(
-            "gym:professores_lista"
-        )
+        return redirect("gym:professores_lista" )
 
     erro = None
 
     if request.method == "POST":
+
         try:
-            nome = request.POST.get(
-                "nome",
-                ""
-            ).strip()
 
-            endereco = request.POST.get(
-                "endereco",
-                ""
-            ).strip()
+            nome = request.POST.get("nome", "").strip()
 
-            telefone = request.POST.get(
-                "telefone",
-                ""
-            ).strip()
+            endereco = request.POST.get("endereco","").strip()
+
+            telefone = request.POST.get("telefone","").strip()
 
             if not nome:
-                raise ValueError(
-                    "O nome do professor é obrigatório."
-                )
+                raise ValueError("O nome do professor é obrigatório.")
 
             if not endereco:
-                raise ValueError(
-                    "O endereço do professor é obrigatório."
-                )
+                raise ValueError("O endereço do professor é obrigatório.")
 
             if not telefone:
-                raise ValueError(
-                    "O telefone do professor é obrigatório."
-                )
+                raise ValueError("O telefone do professor é obrigatório.")
 
             professor_atualizado = Professor(
                 codigo_prof=codigo_prof,
@@ -159,6 +139,7 @@ def editar(request, codigo_prof):
             )
 
         except (ValueError, TypeError) as e:
+
             erro = str(e)
 
     contexto = {
@@ -174,15 +155,16 @@ def editar(request, codigo_prof):
 
 
 def excluir(request, codigo_prof):
+
     professor = professor_service.buscar(codigo_prof)
 
     if professor is None:
-        return redirect(
-            "gym:professores_lista"
-        )
+        return redirect("gym:professores_lista")
 
     if request.method == "POST":
+
         try:
+
             professor_service.remover(codigo_prof)
 
             return redirect(
@@ -190,6 +172,7 @@ def excluir(request, codigo_prof):
             )
 
         except ValueError as e:
+
             erro = str(e)
 
             return render(
