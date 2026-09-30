@@ -49,10 +49,7 @@ def cadastrar(request):
 
             codigo = int(request.POST.get("codigo"))
 
-            nome = request.POST.get(
-                "nome",
-                ""
-            ).strip()
+            nome = request.POST.get("nome","").strip()
 
             data_nascimento = request.POST.get( "data_nascimento", "" ).strip()
 
@@ -61,11 +58,9 @@ def cadastrar(request):
             altura = float(request.POST.get("altura"))
 
             if not nome:
-
                 raise ValueError( "O nome do aluno é obrigatório." )
 
             if any(char.isdigit() for char in nome):
-
                 raise ValueError( "Nome Invalido.")
 
             # Validação da data de nascimento
@@ -175,15 +170,12 @@ def editar(request, codigo):
             altura = float(request.POST.get("altura"))
 
             if not nome:
-
                 raise ValueError("O nome do aluno é obrigatório.")
-
+            
             if peso <= 0:
-
                 raise ValueError("O peso deve ser maior que zero.")
 
             if altura <= 0:
-
                 raise ValueError("A altura deve ser maior que zero.")
 
             aluno_atualizado = Aluno(

@@ -114,12 +114,19 @@ def editar(request, codigo_prof):
 
             if not nome:
                 raise ValueError("O nome do professor é obrigatório.")
+            
+            if any(char.isdigit() for char in nome):
+                 raise ValueError("Nome Invalido.")
 
             if not endereco:
                 raise ValueError("O endereço do professor é obrigatório.")
 
             if not telefone:
                 raise ValueError("O telefone do professor é obrigatório.")
+            
+            telefone = "".join(char for char in telefone if char.isdigit())    
+            if len(telefone) not in (11, 12):
+                raise ValueError("O telefone deve ter 11 números.")
 
             professor_atualizado = Professor(
                 codigo_prof=codigo_prof,

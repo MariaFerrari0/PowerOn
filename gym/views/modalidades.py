@@ -142,6 +142,9 @@ def editar(request, codigo_modalidade):
 
             if not descricao:
                 raise ValueError("A descrição da modalidade é obrigatória." )
+            
+            if descricao == descricao:
+                            raise ValueError("Descricao ja cadastrada.")
 
             if valor_aula <= 0:
                 raise ValueError("O valor da aula deve ser maior que zero.")
