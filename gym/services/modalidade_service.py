@@ -11,7 +11,6 @@ class ModalidadeService:
         self.indice_professores = indice_professores
 
     def cadastrar(self, modalidade):
-        # Verifica se a modalidade já existe
         if self.indice_modalidades.buscar(
             modalidade.codigo_modalidade
         ) is not None:
@@ -20,7 +19,7 @@ class ModalidadeService:
                 f"{modalidade.codigo_modalidade} já existe."
             )
 
-        # Verifica se o professor existe
+        
         professor = self.indice_professores.buscar(
             modalidade.cod_prof
         )
@@ -31,21 +30,21 @@ class ModalidadeService:
                 f"{modalidade.cod_prof} não existe."
             )
 
-        # Valida o limite de alunos
+        
         if modalidade.limite_alunos <= 0:
             raise ValueError(
                 "O limite de alunos deve ser maior que zero."
             )
 
-        # O cadastro começa sem alunos
+        
         modalidade.total_alunos = 0
 
-        # Grava no arquivo físico
+        
         posicao = self.arquivo_modalidades.inserir(
             modalidade
         )
 
-        # Cria o índice código -> posição
+        
         inserido = self.indice_modalidades.inserir(
             modalidade.codigo_modalidade,
             posicao
@@ -101,7 +100,7 @@ class ModalidadeService:
                 "O código da modalidade não pode ser alterado."
             )
 
-        # Verifica se o novo professor existe
+        
         professor = self.indice_professores.buscar(
             modalidade.cod_prof
         )
@@ -117,8 +116,7 @@ class ModalidadeService:
                 "O limite de alunos deve ser maior que zero."
             )
 
-        # Não permite reduzir o limite abaixo
-        # da quantidade atual de alunos
+        
         if modalidade.limite_alunos < modalidade.total_alunos:
             raise ValueError(
                 "O limite de alunos não pode ser menor "
@@ -145,8 +143,7 @@ class ModalidadeService:
         if modalidade is None:
             return False
 
-        # Não permite excluir modalidade
-        # que possui alunos matriculados
+       
         if modalidade.total_alunos > 0:
             raise ValueError(
                 "Não é possível remover uma modalidade "

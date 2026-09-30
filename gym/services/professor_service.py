@@ -80,8 +80,7 @@ class ProfessorService:
         if no is None:
             return False
 
-        # Verifica se o professor está vinculado
-        # a alguma modalidade.
+        
         for codigo, posicao in self.indice_modalidades.listar():
             modalidade = self.arquivo_modalidades.buscar(posicao)
 

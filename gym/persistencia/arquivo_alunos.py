@@ -4,10 +4,6 @@ import struct
 
 class ArquivoAlunos:
 
-    # =========================================================
-    # FORMATO DO REGISTRO
-    # =========================================================
-
     # i    -> código (inteiro)
     # 100s -> nome (100 bytes)
     # 10s  -> data de nascimento (10 bytes)
@@ -22,10 +18,6 @@ class ArquivoAlunos:
         self.caminho = caminho
         self._garantir_arquivo()
 
-    # =========================================================
-    # PREPARAÇÃO DO ARQUIVO
-    # =========================================================
-
     def _garantir_arquivo(self):
         pasta = os.path.dirname(self.caminho)
 
@@ -33,17 +25,11 @@ class ArquivoAlunos:
             os.makedirs(pasta, exist_ok=True)
 
         if not os.path.exists(self.caminho):
-            with open(self.caminho, "wb"):
+            with open(self.caminho, "wb"): #wb sig modo binario 
                 pass
 
-    # =========================================================
-    # CONVERSÃO DE TEXTO
-    # =========================================================
-
     def _codificar_texto(self, texto, tamanho):
-        """
-        Converte uma string para bytes de tamanho fixo.
-        """
+        #Converte uma string para bytes de tamanho fixo.
 
         dados = texto.encode("utf-8")
 
@@ -55,23 +41,11 @@ class ArquivoAlunos:
         return dados.ljust(tamanho, b"\x00")
 
     def _decodificar_texto(self, dados):
-        """
-        Converte bytes de tamanho fixo novamente para string.
-        """
-
         return dados.rstrip(b"\x00").decode("utf-8")
 
-    # =========================================================
-    # INSERÇÃO
-    # =========================================================
+
 
     def inserir(self, aluno):
-        """
-        Insere um aluno no final do arquivo.
-
-        Retorna a posição lógica do registro.
-        """
-
         nome = self._codificar_texto(
             aluno.nome,
             100
@@ -94,7 +68,7 @@ class ArquivoAlunos:
 
         with open(self.caminho, "ab") as arquivo:
 
-            arquivo.seek(0, os.SEEK_END)
+            arquivo.seek(0, os.SEEK_END) #move o cursor para o final do arquivo 
 
             posicao_byte = arquivo.tell()
 
@@ -106,23 +80,16 @@ class ArquivoAlunos:
 
         return posicao
 
-    # =========================================================
-    # BUSCA
-    # =========================================================
-
     def buscar(self, posicao):
-        """
-        Busca um aluno pela posição lógica do registro.
-        """
 
         from ..modelos.aluno import Aluno
 
         if posicao < 0:
             return None
 
-        offset = posicao * self.TAMANHO_REGISTRO
+        offset = posicao * self.TAMANHO_REGISTRO 
 
-        with open(self.caminho, "rb") as arquivo:
+        with open(self.caminho, "rb") as arquivo: #rb leitura em binario 
 
             arquivo.seek(offset)
 
@@ -140,7 +107,7 @@ class ArquivoAlunos:
             peso,
             altura,
             ativo
-        ) = struct.unpack(
+        ) = struct.unpack( #transforma os bytes em valor do python
             self.FORMATO,
             dados
         )
@@ -158,19 +125,8 @@ class ArquivoAlunos:
             altura=altura
         )
 
-    # =========================================================
-    # LISTAR TODOS OS REGISTROS
-    # =========================================================
 
     def listar_todos(self):
-        """
-        Retorna todos os registros, inclusive os inativos.
-
-        Cada item possui:
-            posicao
-            ativo
-            dados
-        """
 
         from ..modelos.aluno import Aluno
 
@@ -229,14 +185,8 @@ class ArquivoAlunos:
 
         return registros
 
-    # =========================================================
-    # LISTAR SOMENTE ATIVOS
-    # =========================================================
-
+   
     def listar(self):
-        """
-        Retorna somente os alunos ativos.
-        """
 
         alunos = []
 
@@ -249,14 +199,9 @@ class ArquivoAlunos:
 
         return alunos
 
-    # =========================================================
-    # ATUALIZAÇÃO
-    # =========================================================
+  
 
     def atualizar(self, posicao, aluno):
-        """
-        Atualiza o registro mantendo a mesma posição.
-        """
 
         if self.buscar(posicao) is None:
             return False
@@ -283,22 +228,15 @@ class ArquivoAlunos:
 
         offset = posicao * self.TAMANHO_REGISTRO
 
-        with open(self.caminho, "r+b") as arquivo:
+        with open(self.caminho, "r+b") as arquivo: 
 
             arquivo.seek(offset)
             arquivo.write(registro)
 
         return True
 
-    # =========================================================
-    # REMOÇÃO LÓGICA
-    # =========================================================
 
     def remover(self, posicao):
-        """
-        Marca o registro como inativo sem removê-lo
-        fisicamente do arquivo.
-        """
 
         aluno = self.buscar(posicao)
 

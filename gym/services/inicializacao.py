@@ -15,19 +15,13 @@ from .matricula_service import MatriculaService
 from .faturamento_service import FaturamentoService
 
 
-# =========================
-# ARQUIVOS
-# =========================
-
 arquivo_alunos = ArquivoAlunos()
 arquivo_professores = ArquivoProfessores()
 arquivo_modalidades = ArquivoModalidades()
 arquivo_matriculas = ArquivoMatriculas()
 
 
-# =========================
-# ÍNDICES
-# =========================
+
 
 indice_alunos = IndiceAlunos(arquivo_alunos)
 indice_professores = IndiceProfessores(arquivo_professores)
@@ -35,9 +29,6 @@ indice_modalidades = IndiceModalidades(arquivo_modalidades)
 indice_matriculas = IndiceMatriculas(arquivo_matriculas)
 
 
-# =========================
-# SERVICES
-# =========================
 
 aluno_service = AlunoService(
     arquivo_alunos,

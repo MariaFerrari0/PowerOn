@@ -63,7 +63,7 @@ def cadastrar(request):
             if any(char.isdigit() for char in nome):
                 raise ValueError( "Nome Invalido.")
 
-            # Validação da data de nascimento
+            
             data = datetime.strptime( data_nascimento,"%Y-%m-%d" )
 
             if data > datetime.now():
@@ -158,7 +158,7 @@ def editar(request, codigo):
 
             data_nascimento = request.POST.get( "data_nascimento", "" ).strip()
 
-            # Validação da data de nascimento
+            
             data = datetime.strptime( data_nascimento, "%Y-%m-%d")
 
             if data > datetime.now():

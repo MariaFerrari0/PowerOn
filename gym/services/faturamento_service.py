@@ -20,7 +20,7 @@ class FaturamentoService:
 
     def calcular_por_modalidade(self, codigo_modalidade):
 
-        # 1. Localiza a modalidade no índice
+        
         no_modalidade = self.indice_modalidades.buscar(
             codigo_modalidade
         )
@@ -31,7 +31,7 @@ class FaturamentoService:
                 f"{codigo_modalidade} não existe."
             )
 
-        # 2. Busca a modalidade no arquivo
+        
         modalidade = self.arquivo_modalidades.buscar(
             no_modalidade.posicao
         )
@@ -42,7 +42,7 @@ class FaturamentoService:
                 "não está disponível no arquivo."
             )
 
-        # 3. Localiza o professor
+        
         no_professor = self.indice_professores.buscar(
             modalidade.cod_prof
         )
@@ -53,7 +53,7 @@ class FaturamentoService:
                 f"{modalidade.cod_prof} não existe."
             )
 
-        # 4. Busca o professor no arquivo
+       
         professor = self.arquivo_professores.buscar(
             no_professor.posicao
         )
@@ -64,7 +64,7 @@ class FaturamentoService:
                 "não está disponível no arquivo."
             )
 
-        # 5. Soma as aulas das matrículas
+       
         total_aulas = 0
 
         for codigo, posicao in self.indice_matriculas.listar():
@@ -79,12 +79,12 @@ class FaturamentoService:
             if matricula.cod_modalidade == codigo_modalidade:
                 total_aulas += matricula.qtde_aulas
 
-        # 6. Calcula o faturamento
+       
         faturamento = (
             modalidade.valor_aula * total_aulas
         )
 
-        # 7. Retorna os dados do relatório
+       
         return {
             "codigo_modalidade": modalidade.codigo_modalidade,
             "descricao": modalidade.descricao,
