@@ -62,7 +62,7 @@
         overflow-x: hidden;
     }
 
-    /* Sidebar fechada no celular */
+    
     .sidebar {
         width: 280px;
         max-width: 85vw;
@@ -79,7 +79,7 @@
         display: flex;
     }
 
-    /* Conteúdo ocupa a tela inteira */
+   
     .main-content {
         width: 100% !important;
         max-width: 100%;
@@ -87,7 +87,7 @@
         box-sizing: border-box;
     }
 
-    /* Botão para abrir o menu */
+    
     .menu-mobile {
         display: flex;
         align-items: center;
@@ -121,7 +121,7 @@
         transform: scale(1.05);
     }
 
-    /* Fundo escuro atrás da sidebar */
+ 
     .sidebar-overlay {
         display: none;
 
@@ -137,7 +137,7 @@
         display: block;
     }
 
-    /* Espaço superior para não ficar atrás do botão ☰ */
+    
     .home,
     .page-container,
     .faturamento,
@@ -149,7 +149,6 @@
         padding-bottom: 40px;
     }
 
-    /* Cabeçalhos */
     .page-header {
         flex-direction: column;
         align-items: stretch;
@@ -160,7 +159,7 @@
         width: 100%;
     }
 
-    /* Formulários */
+   
     .card,
     .detalhes-card {
         width: 100%;
@@ -182,13 +181,13 @@
         box-sizing: border-box;
     }
 
-    /* Detalhes */
+  
     .detalhes-item {
         flex-direction: column;
         gap: 6px;
     }
 
-    /* Tabelas */
+
     .table-container {
         width: 100%;
         max-width: 100%;
@@ -200,7 +199,7 @@
         min-width: 700px;
     }
 
-    /* Relatórios */
+   
     .relatorio-card {
         width: 100%;
         flex-direction: column;
@@ -213,7 +212,7 @@
         width: 100%;
     }
 
-    /* Dashboard */
+   
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
@@ -225,9 +224,7 @@
 }
 
 
-/* =========================================================
-   CELULAR
-   ========================================================= */
+
 
 @media screen and (max-width: 650px) {
 
@@ -238,7 +235,7 @@
         padding: 80px 18px 30px;
     }
 
-    /* Home antiga / compatibilidade */
+    
     .home-header h1 {
         font-size: 2.5rem;
         line-height: 1.1;
@@ -266,7 +263,7 @@
         font-size: 2.5rem;
     }
 
-    /* Novo dashboard */
+   
     .dashboard-stats {
         grid-template-columns: 1fr;
     }
@@ -288,7 +285,7 @@
         align-items: flex-start;
     }
 
-    /* Formulários */
+   
     .card {
         padding: 20px;
     }
@@ -301,7 +298,7 @@
         width: 100%;
     }
 
-    /* Detalhes */
+   
     .detalhes-card {
         padding: 20px;
     }
@@ -310,7 +307,7 @@
         padding: 13px 0;
     }
 
-    /* Relatórios */
+   
     .relatorios {
         width: 100%;
         margin-top: 30px;
@@ -324,7 +321,7 @@
         padding: 20px;
     }
 
-    /* Tabelas continuam com rolagem horizontal */
+   
     .table-container {
         overflow-x: auto;
     }
@@ -335,9 +332,6 @@
 }
 
 
-/* =========================================================
-   CELULAR PEQUENO
-   ========================================================= */
 
 @media screen and (max-width: 400px) {
 
