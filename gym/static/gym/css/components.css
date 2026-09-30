@@ -255,13 +255,13 @@ tbody tr:hover {
         linear-gradient(
             135deg,
             var(--cor-roxo),
-            var(--cor-roxo-neon)
+            var(--cor-roxo)
         );
 
     color: #ffffff;
     font-size: 20px;
     box-shadow:
-        0 0 18px rgba(157, 0, 255, 0.45);
+        0 0 18px rgba(180, 72, 234, 0.61);
 }
 
 .logo-text {
