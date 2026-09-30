@@ -1,22 +1,12 @@
-/* =========================================================
-   POWERON - JAVASCRIPT
-   Interações gerais do sistema
-   ========================================================= */
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
     inicializarMensagens();
-
     inicializarConfirmacoes();
-
     inicializarMenuMobile();
 
 });
-
-
-/* =========================================================
-   MENSAGENS
-   ========================================================= */
 
 function inicializarMensagens() {
 
@@ -45,11 +35,6 @@ function inicializarMensagens() {
     });
 
 }
-
-
-/* =========================================================
-   CONFIRMAÇÃO DE EXCLUSÃO
-   ========================================================= */
 
 function inicializarConfirmacoes() {
 
@@ -87,11 +72,6 @@ function inicializarConfirmacoes() {
 
 }
 
-
-/* =========================================================
-   MENU MOBILE
-   ========================================================= */
-
 function inicializarMenuMobile() {
 
     const botaoMenu =
@@ -108,11 +88,6 @@ function inicializarMenuMobile() {
         );
 
 
-    /*
-     * Se algum elemento não existir,
-     * não executa o restante da função.
-     */
-
     if (
         !botaoMenu ||
         !sidebar ||
@@ -123,10 +98,6 @@ function inicializarMenuMobile() {
 
     }
 
-
-    /* =====================================================
-       ABRIR / FECHAR MENU
-       ===================================================== */
 
     botaoMenu.addEventListener(
         "click",
@@ -165,10 +136,7 @@ function inicializarMenuMobile() {
     );
 
 
-    /* =====================================================
-       FECHAR AO CLICAR NO FUNDO
-       ===================================================== */
-
+ 
     overlay.addEventListener(
         "click",
         () => {
@@ -179,9 +147,7 @@ function inicializarMenuMobile() {
     );
 
 
-    /* =====================================================
-       FECHAR AO CLICAR EM UM LINK
-       ===================================================== */
+   
 
     const links =
         sidebar.querySelectorAll(
@@ -201,11 +167,6 @@ function inicializarMenuMobile() {
         );
 
     });
-
-
-    /* =====================================================
-       FUNÇÃO PARA FECHAR O MENU
-       ===================================================== */
 
     function fecharMenu() {
 
