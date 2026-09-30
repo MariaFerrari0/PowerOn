@@ -22,7 +22,7 @@
     --cor-texto-secundario: #b8b8c7;
     --cor-texto-muted: #777788;
 
-    --cor-borda: #292938;
+    --cor-borda: #692003;
 
     --cor-erro: #ff3b6b;
     --cor-sucesso: #00ff88;
@@ -64,7 +64,7 @@ body {
         ),
         radial-gradient(
             circle at bottom left,
-            rgba(0, 255, 136, 0.06),
+            rgba(0, 234, 255, 0.06),
             transparent 30%
         ),
         var(--cor-fundo);
@@ -101,7 +101,7 @@ h1 {
     font-weight: 700;
 
     text-shadow:
-        0 0 10px rgba(157, 0, 255, 0.35);
+        0 0 10px rgba(206, 121, 223, 0.955);
 }
 
 h2 {
@@ -136,7 +136,7 @@ a:hover {
     color: var(--cor-verde-neon);
 
     text-shadow:
-        0 0 8px rgba(0, 255, 136, 0.6);
+        0 0 8px rgba(44, 9, 244, 0.911);
 }
 
 
@@ -249,7 +249,7 @@ button:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 0 18px rgba(157, 0, 255, 0.45);
+        0 0 18px rgba(180, 112, 222, 0.951);
 }
 
 button:active {
