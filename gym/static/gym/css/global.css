@@ -59,7 +59,7 @@ body {
     background:
         radial-gradient(
             circle at top right,
-            rgba(157, 0, 255, 0.10),
+            rgba(248, 247, 249, 0.1),
             transparent 30%
         ),
         radial-gradient(
@@ -101,7 +101,7 @@ h1 {
     font-weight: 700;
 
     text-shadow:
-        0 0 10px rgba(206, 121, 223, 0.955);
+        0 0 10px rgba(130, 121, 223, 0.955);
 }
 
 h2 {
@@ -133,10 +133,10 @@ a {
 }
 
 a:hover {
-    color: var(--cor-verde-neon);
+    color: var(--cor-roxo);
 
     text-shadow:
-        0 0 8px rgba(44, 9, 244, 0.911);
+        0 0 8px rgba(9, 116, 7, 0.696);
 }
 
 
@@ -202,7 +202,7 @@ textarea:focus {
     border-color: var(--cor-roxo);
 
     box-shadow:
-        0 0 0 2px rgba(157, 0, 255, 0.15),
+        0 0 0 2px rgba(0, 0, 249, 0.15),
         var(--sombra-roxa);
 }
 
